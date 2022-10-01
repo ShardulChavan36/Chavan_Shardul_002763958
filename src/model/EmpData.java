@@ -28,6 +28,10 @@ public class EmpData {
         saved_data.add(emp);
         return emp;
     }
+    public void deleteEmpDetails(EmpDetails e){
+    saved_data.remove(e);
+    }
+    
     
     
 }

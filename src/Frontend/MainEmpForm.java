@@ -152,6 +152,8 @@ public class MainEmpForm extends javax.swing.JFrame {
 
     private void DelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelBtnActionPerformed
         // TODO add your handling code here:
+        DeletePanel  deletePanel=new DeletePanel(saved_data);
+        SplitPane.setRightComponent(deletePanel);
     }//GEN-LAST:event_DelBtnActionPerformed
 
     private void CreateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateBtnActionPerformed

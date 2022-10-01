@@ -115,7 +115,10 @@ public class EmpDetails {
     public void setCell_no(long cell_no) {
         this.cell_no = cell_no;
     }
-
+    @Override
+    public String toString(){
+        return name;
+    }
 
    
 //    public EmpDetails saveEmpDetails() {
