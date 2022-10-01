@@ -142,6 +142,8 @@ public class MainEmpForm extends javax.swing.JFrame {
 
     private void ViewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewBtnActionPerformed
         // TODO add your handling code here:
+        ViewPanel  viewPanel=new ViewPanel(saved_data);
+        SplitPane.setRightComponent(viewPanel);
     }//GEN-LAST:event_ViewBtnActionPerformed
 
     private void UpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBtnActionPerformed
