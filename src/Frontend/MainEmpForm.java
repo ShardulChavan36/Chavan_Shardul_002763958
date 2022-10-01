@@ -4,7 +4,8 @@
  */
 package Frontend;
 
-import model.EmpDetails;
+import model.EmpData;
+
 
 /**
  *
@@ -15,10 +16,12 @@ public class MainEmpForm extends javax.swing.JFrame {
     /**
      * Creates new form EmpForm
      */
-    EmpDetails saved_data;
+    EmpData saved_data;
     public MainEmpForm() {
+        
+
         initComponents();
-        saved_data=new EmpDetails();
+        saved_data=new EmpData();
     }
 
     /**
@@ -41,7 +44,7 @@ public class MainEmpForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        SplitPane.setDividerLocation(120);
+        SplitPane.setDividerLocation(150);
 
         controllerPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -110,7 +113,7 @@ public class MainEmpForm extends javax.swing.JFrame {
         formPanelLayout.setHorizontalGroup(
             formPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formPanelLayout.createSequentialGroup()
-                .addContainerGap(865, Short.MAX_VALUE)
+                .addContainerGap(850, Short.MAX_VALUE)
                 .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );

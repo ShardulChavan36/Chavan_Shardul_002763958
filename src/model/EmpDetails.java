@@ -16,20 +16,41 @@ public class EmpDetails {
     private String team_info;
     private String Pos_title;
     private String email_id;
-    
+    private String level;
     private int age;
     private int empid;
     private long cell_no;
-    private LocalDate start_date;
-    private ImageIcon icon;
+    private String start_date;
+    private String icon1;
 
-    public LocalDate getStart_date() {
+    public String getIcon1() {
+        return icon1;
+    }
+
+    public void setIcon1(String icon1) {
+        this.icon1 = icon1;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
+    
+    public String getStart_date() {
         return start_date;
     }
 
-    public void setStart_date(LocalDate start_date) {
+    public void setStart_date(String start_date) {
         this.start_date = start_date;
     }
+
+
+
+    
 
     public String getName() {
         return name;
@@ -96,16 +117,9 @@ public class EmpDetails {
     }
 
 
-    public ImageIcon getIcon() {
-        return icon;
-    }
-
-    public void setIcon(ImageIcon icon) {
-        this.icon = icon;
-    }
-
-    public EmpDetails saveEmpDetails() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   
+//    public EmpDetails saveEmpDetails() {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//    }
     
 }

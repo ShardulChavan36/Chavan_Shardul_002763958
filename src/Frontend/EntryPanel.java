@@ -19,8 +19,8 @@ public class EntryPanel extends javax.swing.JPanel {
     /**
      * Creates new form EntryPanel
      */
-   EmpDetails saved_data;
-    public EntryPanel(EmpDetails saved_data) {
+   EmpData saved_data;
+    public EntryPanel(EmpData saved_data) {
         initComponents();
         this.saved_data=saved_data;
     }
@@ -49,9 +49,8 @@ public class EntryPanel extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        Empdob = new java.awt.TextField();
+        Empgender = new java.awt.TextField();
         Empstartdate = new java.awt.TextField();
-        GenderComboBox = new javax.swing.JComboBox<>();
         Empname = new java.awt.TextField();
         Empid = new java.awt.TextField();
         Emplevel = new java.awt.TextField();
@@ -59,10 +58,11 @@ public class EntryPanel extends javax.swing.JPanel {
         EmpPos = new java.awt.TextField();
         Empcell = new java.awt.TextField();
         jLabel15 = new javax.swing.JLabel();
-        BrowseBtn = new javax.swing.JButton();
         Empemail = new java.awt.TextField();
         Photopath = new javax.swing.JLabel();
         SubmitBtn = new javax.swing.JButton();
+        Empdob1 = new java.awt.TextField();
+        path = new javax.swing.JTextField();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Create New Employee");
@@ -106,25 +106,14 @@ public class EntryPanel extends javax.swing.JPanel {
         jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel14.setText("Email Id");
 
-        GenderComboBox.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        GenderComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Transgender", "PreferNotToSay" }));
-        GenderComboBox.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                GenderComboBoxItemStateChanged(evt);
-            }
-        });
-        GenderComboBox.addActionListener(new java.awt.event.ActionListener() {
+        Emplevel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GenderComboBoxActionPerformed(evt);
+                EmplevelActionPerformed(evt);
             }
         });
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel15.setText("Upload Photo");
-
-        BrowseBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        BrowseBtn.setText("Browse");
-        BrowseBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         Photopath.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Photopath.setText("Choose URL from dir.");
@@ -137,6 +126,8 @@ public class EntryPanel extends javax.swing.JPanel {
                 SubmitBtnActionPerformed(evt);
             }
         });
+
+        path.setText("jTextField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -171,13 +162,12 @@ public class EntryPanel extends javax.swing.JPanel {
                             .addComponent(Empcell, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Empstartdate, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(Empdob, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(GenderComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Empname, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(Empgender, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                                .addComponent(Empname, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Empdob1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE))
                             .addComponent(Emplevel, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(Empteam, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(EmpPos, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(Empteam, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(EmpPos, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(70, 70, 70)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,8 +178,8 @@ public class EntryPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(96, 96, 96)
                         .addComponent(Photopath, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47)
-                        .addComponent(BrowseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addComponent(path, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(195, 195, 195)
                         .addComponent(SubmitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -207,16 +197,17 @@ public class EntryPanel extends javax.swing.JPanel {
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(Empname, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(Empname, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel3))
+                    .addComponent(Empdob1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(Empdob, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(GenderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Empgender, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel11)
                 .addGap(25, 25, 25)
@@ -260,42 +251,48 @@ public class EntryPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Photopath)
-                    .addComponent(BrowseBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                    .addComponent(path, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(SubmitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public static int calculateAge(LocalDate dob)   
-    {  
-    //creating an instance of the LocalDate class and invoking the now() method      
-    //now() method obtains the current date from the system clock in the default time zone      
-    LocalDate curDate = LocalDate.now();  
-    //calculates the amount of time between two dates and returns the years  
-    if ((dob != null) && (curDate != null))   
-    {  
-    return Period.between(dob, curDate).getYears();  
-    }  
-    else  
-    {  
-    return 0;  
-    }  
-    }  
+//    public static int calculateAge(LocalDate dob)   
+//    {  
+//    //creating an instance of the LocalDate class and invoking the now() method      
+//    //now() method obtains the current date from the system clock in the default time zone      
+//    LocalDate curDate = LocalDate.now();  
+//    //calculates the amount of time between two dates and returns the years  
+//    if ((dob != null) && (curDate != null))   
+//    {  
+//    return Period.between(dob, curDate).getYears();  
+//    }  
+//    else  
+//    {  
+//    return 0;  
+//    }  
+//    }  
     private void SubmitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitBtnActionPerformed
         // TODO add your handling code here:
         String name=Empname.getText();
         String team_info=Empteam.getText();
         String Pos_title=EmpPos.getText();
         String email_id=Empemail.getText();
-        LocalDate dob=LocalDate.parse(Empdob.getText());
-        int age=calculateAge(dob);
+        String level=Emplevel.getText();
+        String gender=Empgender.getText();
+//        LocalDate dob=LocalDate.parse(Empdob.getText());
+        int age=Integer.parseInt(Empdob1.getText());
         int empid=Integer.parseInt(Empid.getText());
         long cell_no=Long.parseLong(Empcell.getText());
-        LocalDate start_date=LocalDate.parse(Empstartdate.getText());
+        String start_date=Empstartdate.getText();
+//        LocalDate start_date=LocalDate.parse(Empstartdate.getText());
+        String icon1=path.getText();
         
         EmpDetails e=saved_data.saveEmpDetails();
         e.setAge(age);
+        e.setGender(gender);
+        e.setLevel(level);
         e.setCell_no(cell_no);
         e.setEmail_id(email_id);
         e.setEmpid(empid);
@@ -303,43 +300,39 @@ public class EntryPanel extends javax.swing.JPanel {
         e.setPos_title(Pos_title);
         e.setStart_date(start_date);
         e.setTeam_info(team_info);
-        JOptionPane.showMessageDialog(this,"New Employee Details Added");
-//        e.setAge("");
-//        e.setCell_no("");
-//        e.setEmail_id(email_id);
-//        e.setEmpid(empid);
-//        e.setName(name);
-//        e.setPos_title(Pos_title);
-//        e.setStart_date(start_date);
-//        e.setTeam_info(team_info);
-        
+        e.setIcon1(icon1);
+        JOptionPane.showMessageDialog(this,"New Employee Details Stored");
+        System.out.println("Done");
+        Empname.setText("");
+        Empteam.setText("");
+        EmpPos.setText("");
+        Empemail.setText("");
+        Emplevel.setText("");
+        Empgender.setText("");
+//        LocalDate dob=LocalDate.parse(Empdob.getText());
+        Empdob1.setText("");
+        Empid.setText("");
+        Empcell.setText("");
+        Empstartdate.setText("");
+//        LocalDate start_date=LocalDate.parse(Empstartdate.getText());
+        path.setText("");
     }//GEN-LAST:event_SubmitBtnActionPerformed
-        
-    private void GenderComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenderComboBoxActionPerformed
+    private void EmplevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmplevelActionPerformed
         // TODO add your handling code here:
-        
-        String gender=(String)GenderComboBox.getSelectedItem();
-
-        
-    }//GEN-LAST:event_GenderComboBoxActionPerformed
-
-    private void GenderComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_GenderComboBoxItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_GenderComboBoxItemStateChanged
-    
+    }//GEN-LAST:event_EmplevelActionPerformed
+            
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BrowseBtn;
     private java.awt.TextField EmpPos;
     private java.awt.TextField Empcell;
-    private java.awt.TextField Empdob;
+    private java.awt.TextField Empdob1;
     private java.awt.TextField Empemail;
+    private java.awt.TextField Empgender;
     private java.awt.TextField Empid;
     private java.awt.TextField Emplevel;
     private java.awt.TextField Empname;
     private java.awt.TextField Empstartdate;
     private java.awt.TextField Empteam;
-    private javax.swing.JComboBox<String> GenderComboBox;
     private javax.swing.JLabel Photopath;
     private javax.swing.JButton SubmitBtn;
     private javax.swing.JLabel jLabel1;
@@ -357,6 +350,7 @@ public class EntryPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField path;
     private java.awt.ScrollPane scrollPane1;
     // End of variables declaration//GEN-END:variables
 
