@@ -63,7 +63,7 @@ public class UpdatePanel extends javax.swing.JPanel {
         Empcell = new java.awt.TextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        photoPanel = new javax.swing.JPanel();
+        PhotoDisp = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(749, 863));
 
@@ -154,16 +154,7 @@ public class UpdatePanel extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Date of Birth");
 
-        javax.swing.GroupLayout photoPanelLayout = new javax.swing.GroupLayout(photoPanel);
-        photoPanel.setLayout(photoPanelLayout);
-        photoPanelLayout.setHorizontalGroup(
-            photoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 238, Short.MAX_VALUE)
-        );
-        photoPanelLayout.setVerticalGroup(
-            photoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 205, Short.MAX_VALUE)
-        );
+        PhotoDisp.setText("jLabel15");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -224,13 +215,15 @@ public class UpdatePanel extends javax.swing.JPanel {
                                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(60, 60, 60)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Empid, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(EmpPos, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Empstartdate, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Emplevel, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Empteam, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(178, 178, 178)
-                                .addComponent(photoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(Empid, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(Empstartdate, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(Emplevel, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(Empteam, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(197, 197, 197)
+                                        .addComponent(PhotoDisp, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(160, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -292,18 +285,18 @@ public class UpdatePanel extends javax.swing.JPanel {
                                     .addComponent(Emplevel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(21, 21, 21)
                                 .addComponent(jLabel8))
-                            .addComponent(Empteam, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(jLabel10))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(EmpPos, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(1, 1, 1))))
+                            .addComponent(Empteam, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(PhotoDisp, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(photoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel10))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(EmpPos, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)))
                 .addGap(76, 76, 76))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -316,6 +309,7 @@ public class UpdatePanel extends javax.swing.JPanel {
             return;
         }
         DefaultTableModel model = (DefaultTableModel) empDisplayTable.getModel();
+        System.out.print(model.getValueAt(selectedRowIndex,0));
         EmpDetails selectedEmp=(EmpDetails)model.getValueAt(selectedRowIndex,0);
         saved_data.deleteEmpDetails(selectedEmp);
         
@@ -344,7 +338,7 @@ public class UpdatePanel extends javax.swing.JPanel {
         Empid.setText(String.valueOf(selectedEmp.getEmpid()));
         Emplevel.setText(selectedEmp.getLevel());
         Empstartdate.setText(selectedEmp.getStart_date());
-        photoPanel.createImage((ImageProducer) selectedEmp.getIcon());
+        PhotoDisp.setIcon(selectedEmp.getIcon());
     }//GEN-LAST:event_finalViewBtnActionPerformed
 
     private void EmplevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmplevelActionPerformed
@@ -381,6 +375,7 @@ public class UpdatePanel extends javax.swing.JPanel {
     private java.awt.TextField Empname;
     private java.awt.TextField Empstartdate;
     private java.awt.TextField Empteam;
+    private javax.swing.JLabel PhotoDisp;
     private javax.swing.JButton delBtn;
     private javax.swing.JTable empDisplayTable;
     private javax.swing.JButton finalViewBtn;
@@ -399,7 +394,6 @@ public class UpdatePanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel photoPanel;
     // End of variables declaration//GEN-END:variables
 
     
