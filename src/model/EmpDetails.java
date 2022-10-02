@@ -21,15 +21,17 @@ public class EmpDetails {
     private int empid;
     private long cell_no;
     private String start_date;
-    private String icon1;
+    private ImageIcon icon;
 
-    public String getIcon1() {
-        return icon1;
+    public ImageIcon getIcon() {
+        return icon;
     }
 
-    public void setIcon1(String icon1) {
-        this.icon1 = icon1;
+    public void setIcon(ImageIcon icon) {
+        this.icon = icon;
     }
+
+    
 
     public String getLevel() {
         return level;
