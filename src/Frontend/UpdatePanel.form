@@ -408,9 +408,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="PhotoDisp">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel15"/>
-      </Properties>
     </Component>
   </SubComponents>
 </Form>
