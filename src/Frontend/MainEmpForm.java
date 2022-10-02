@@ -35,9 +35,7 @@ public class MainEmpForm extends javax.swing.JFrame {
 
         SplitPane = new javax.swing.JSplitPane();
         controllerPanel = new javax.swing.JPanel();
-        ViewBtn = new javax.swing.JButton();
         CreateBtn = new javax.swing.JButton();
-        UpdateBtn = new javax.swing.JButton();
         DelBtn = new javax.swing.JButton();
         formPanel = new javax.swing.JPanel();
         jScrollBar1 = new javax.swing.JScrollBar();
@@ -48,13 +46,6 @@ public class MainEmpForm extends javax.swing.JFrame {
 
         controllerPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        ViewBtn.setText("View Employee");
-        ViewBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ViewBtnActionPerformed(evt);
-            }
-        });
-
         CreateBtn.setText("Create Employee");
         CreateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,14 +53,7 @@ public class MainEmpForm extends javax.swing.JFrame {
             }
         });
 
-        UpdateBtn.setText("Update ");
-        UpdateBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UpdateBtnActionPerformed(evt);
-            }
-        });
-
-        DelBtn.setText("Delete Employee");
+        DelBtn.setText("Update Employee");
         DelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DelBtnActionPerformed(evt);
@@ -81,11 +65,9 @@ public class MainEmpForm extends javax.swing.JFrame {
         controllerPanelLayout.setHorizontalGroup(
             controllerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controllerPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(controllerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(CreateBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(UpdateBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ViewBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(DelBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -94,13 +76,9 @@ public class MainEmpForm extends javax.swing.JFrame {
             .addGroup(controllerPanelLayout.createSequentialGroup()
                 .addGap(117, 117, 117)
                 .addComponent(CreateBtn)
-                .addGap(38, 38, 38)
-                .addComponent(ViewBtn)
                 .addGap(41, 41, 41)
-                .addComponent(UpdateBtn)
-                .addGap(35, 35, 35)
                 .addComponent(DelBtn)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(428, Short.MAX_VALUE))
         );
 
         SplitPane.setLeftComponent(controllerPanel);
@@ -119,7 +97,7 @@ public class MainEmpForm extends javax.swing.JFrame {
         );
         formPanelLayout.setVerticalGroup(
             formPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
+            .addComponent(jScrollBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
         );
 
         SplitPane.setRightComponent(formPanel);
@@ -134,25 +112,15 @@ public class MainEmpForm extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(SplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
+            .addComponent(SplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ViewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewBtnActionPerformed
-        // TODO add your handling code here:
-        ViewPanel  viewPanel=new ViewPanel(saved_data);
-        SplitPane.setRightComponent(viewPanel);
-    }//GEN-LAST:event_ViewBtnActionPerformed
-
-    private void UpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_UpdateBtnActionPerformed
-
     private void DelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelBtnActionPerformed
         // TODO add your handling code here:
-        DeletePanel  deletePanel=new DeletePanel(saved_data);
+        UpdatePanel  deletePanel=new UpdatePanel(saved_data);
         SplitPane.setRightComponent(deletePanel);
     }//GEN-LAST:event_DelBtnActionPerformed
 
@@ -202,8 +170,6 @@ public class MainEmpForm extends javax.swing.JFrame {
     private javax.swing.JButton CreateBtn;
     private javax.swing.JButton DelBtn;
     private javax.swing.JSplitPane SplitPane;
-    private javax.swing.JButton UpdateBtn;
-    private javax.swing.JButton ViewBtn;
     private javax.swing.JPanel controllerPanel;
     private javax.swing.JPanel formPanel;
     private javax.swing.JScrollBar jScrollBar1;

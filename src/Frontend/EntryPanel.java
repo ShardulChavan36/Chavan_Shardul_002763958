@@ -287,7 +287,7 @@ public class EntryPanel extends javax.swing.JPanel {
         long cell_no=Long.parseLong(Empcell.getText());
         String start_date=Empstartdate.getText();
 //        LocalDate start_date=LocalDate.parse(Empstartdate.getText());
-        String icon1=path.getText();
+        ImageIcon icon=path.getText();
         
         EmpDetails e=saved_data.saveEmpDetails();
         e.setAge(age);
