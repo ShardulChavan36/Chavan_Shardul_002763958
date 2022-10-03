@@ -350,7 +350,7 @@ public class trailPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 817, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -413,43 +413,93 @@ public class trailPanel extends javax.swing.JPanel {
     private void finalUpdateBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalUpdateBtn1ActionPerformed
         // TODO add your handling code here:{
             int selectedRowIndex=empDisplayTable.getSelectedRow();
+            
             if (selectedRowIndex<0){
                 JOptionPane.showMessageDialog(this,"Please select a row to View First and then Update");
                 return;
             }
+            DefaultTableModel model = (DefaultTableModel) empDisplayTable.getModel();
+            EmpDetails selectedEmp=(EmpDetails)model.getValueAt(selectedRowIndex,0);
+            
+            
+            String name=Empname.getText();
+            if (!selectedEmp.getName().equals(name)){
+                selectedEmp.setName(name);
+                model.setValueAt(name,selectedRowIndex,0);
+            }
+            else{
+                model.setValueAt(selectedEmp.getName(),selectedRowIndex,0);
+            }
+            
+            
+            String team_info=Empteam.getText();
+            if (!selectedEmp.getTeam_info().equals(team_info)){
+                selectedEmp.setTeam_info(team_info);
+                model.setValueAt(team_info,selectedRowIndex,6);
+            }
+            else{
+                model.setValueAt(selectedEmp.getTeam_info(),selectedRowIndex,6);
+            }
+            
+            
+            String Pos_title=EmpPos.getText();
+            if (!selectedEmp.getPos_title().equals(Pos_title)){
+                selectedEmp.setPos_title(Pos_title);
+                model.setValueAt(Pos_title,selectedRowIndex,7);
+            }
+             else{
+                model.setValueAt(selectedEmp.getPos_title(),selectedRowIndex,7);
+            }
+            
+            
+            String email_id=Empemail.getText();
+            if (!selectedEmp.getEmail_id().equals(email_id)){
+                selectedEmp.setEmail_id(email_id);
+                model.setValueAt(email_id,selectedRowIndex,9);
+            }
+            else{
+                model.setValueAt(selectedEmp.getEmail_id(),selectedRowIndex,9);
+            }
+            
+            
+            String level=Emplevel.getText();
+            if (!selectedEmp.getLevel().equals(level)){
+                selectedEmp.setLevel(level);
+                model.setValueAt(level,selectedRowIndex,5);
+            }
+            else{
+                model.setValueAt(selectedEmp.getLevel(),selectedRowIndex,5);
+            }
 
-            //        String name=Empname.getText();
-            //        String team_info=Empteam.getText();
-            //        String Pos_title=EmpPos.getText();
-            //        String email_id=Empemail.getText();
-            //        String level=Emplevel.getText();
-            //        String gender=Empgender.getText();
-            //        //        LocalDate dob=LocalDate.parse(Empdob.getText());
-            //        int age=Integer.parseInt(Empdob1.getText());
-            //        int empid=Integer.parseInt(Empid.getText());
-            //        long cell_no=Long.parseLong(Empcell.getText());
-            //        //        ImageIcon icon=new ImageIcon(Photopath.getText());
-            //        //SimpleDateFormat strdate = new SimpleDateFormat("MMM-dd-yyyy");
-            //        String start_date = Empstartdate.getText();
-            //        //        String start_date=Empstartdate.getText();
-            //        //        LocalDate start_date=LocalDate.parse(Empstartdate.getText());
-            //        EmpDetails e=saved_data.saveEmpDetails();
-            //        e.set(selectedRowIndex,age);
-            //        saved_data.set(selectedRowIndex,gender);
-            //        saved_data.set(selectedRowIndex,level);
-            //        saved_data.set(selectedRowIndex,cell_no);
-            //        saved_data.set(selectedRowIndex,email_id);
-            //        saved_data.set(selectedRowIndex,empid);
-            //        saved_data.set(selectedRowIndex,name);
-            //        saved_data.set(selectedRowIndex,Pos_title);
-            //        saved_data.set(selectedRowIndex,start_date);
-            //        saved_data.set(selectedRowIndex,team_info);
-            //
-            //        //e.setIcon(icon);
-            //        DefaultTableModel model = (DefaultTableModel) empDisplayTable.getModel();
-            //        for (int i = 0; i < model.getRowCount(); i++){
-                //            for(int j = 0; j< model.getColumnCount(); j++) {
-                    //                model.setValueAt(e,i ,j);
+              
+            String gender=Empgender.getText();
+            if (!selectedEmp.getGender().equals(gender)){
+                selectedEmp.setGender(gender);
+                model.setValueAt(gender,selectedRowIndex,2);
+            }
+            else{
+                model.setValueAt(selectedEmp.getGender(),selectedRowIndex,2);
+            }
+            
+            int age=Integer.parseInt(Empdob1.getText());
+            if (selectedEmp.getAge()!=(age)){
+                selectedEmp.setAge(age);
+                model.setValueAt(String.valueOf(age),selectedRowIndex,1);
+            }
+            else{
+                model.setValueAt(String.valueOf(selectedEmp.getAge()),selectedRowIndex,1);
+            }
+            
+            
+            int cell_no=Integer.parseInt(Empcell.getText());
+            if (selectedEmp.getCell_no()!=(cell_no)){
+                selectedEmp.setCell_no(cell_no);
+                model.setValueAt(String.valueOf(cell_no),selectedRowIndex,1);
+            }
+            else{
+                model.setValueAt(String.valueOf(selectedEmp.getCell_no()),selectedRowIndex,1);
+            }
+           
 
     }//GEN-LAST:event_finalUpdateBtn1ActionPerformed
 
@@ -467,6 +517,15 @@ public class trailPanel extends javax.swing.JPanel {
 
         JOptionPane.showMessageDialog(this,"Employee Deleted");
         dispTable();
+        Empname.setText("");
+        Empteam.setText("");
+        EmpPos.setText("");
+        Empemail.setText("");
+        Emplevel.setText("");
+        Empgender.setText("");
+        Empdob1.setText("");
+        Empid.setText("");
+        Empcell.setText("");
     }//GEN-LAST:event_delBtnActionPerformed
 
     private void EmplevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmplevelActionPerformed
