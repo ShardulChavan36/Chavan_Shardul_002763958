@@ -38,7 +38,6 @@ public class MainEmpForm extends javax.swing.JFrame {
         CreateBtn = new javax.swing.JButton();
         DelBtn = new javax.swing.JButton();
         formPanel = new javax.swing.JPanel();
-        jScrollBar1 = new javax.swing.JScrollBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,14 +89,11 @@ public class MainEmpForm extends javax.swing.JFrame {
         formPanel.setLayout(formPanelLayout);
         formPanelLayout.setHorizontalGroup(
             formPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formPanelLayout.createSequentialGroup()
-                .addContainerGap(850, Short.MAX_VALUE)
-                .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGap(0, 866, Short.MAX_VALUE)
         );
         formPanelLayout.setVerticalGroup(
             formPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
+            .addGap(0, 630, Short.MAX_VALUE)
         );
 
         SplitPane.setRightComponent(formPanel);
@@ -120,7 +116,7 @@ public class MainEmpForm extends javax.swing.JFrame {
 
     private void DelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelBtnActionPerformed
         // TODO add your handling code here:
-        UpdatePanel  deletePanel=new UpdatePanel(saved_data);
+        trailPanel deletePanel=new trailPanel(saved_data);
         SplitPane.setRightComponent(deletePanel);
     }//GEN-LAST:event_DelBtnActionPerformed
 
@@ -172,6 +168,5 @@ public class MainEmpForm extends javax.swing.JFrame {
     private javax.swing.JSplitPane SplitPane;
     private javax.swing.JPanel controllerPanel;
     private javax.swing.JPanel formPanel;
-    private javax.swing.JScrollBar jScrollBar1;
     // End of variables declaration//GEN-END:variables
 }

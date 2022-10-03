@@ -311,6 +311,7 @@ public class EntryPanel extends javax.swing.JPanel {
         ImageIcon icon=new ImageIcon(Photopath.getText());
         SimpleDateFormat strdate = new SimpleDateFormat("MMM-dd-yyyy");
         String start_date = strdate.format(Empstartdate.getDate());
+        
 //        String start_date=Empstartdate.getText();
 //        LocalDate start_date=LocalDate.parse(Empstartdate.getText());
         EmpDetails e=saved_data.saveEmpDetails();

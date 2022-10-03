@@ -31,7 +31,6 @@ public class EmpData {
     public void deleteEmpDetails(EmpDetails e){
     saved_data.remove(e);
     }
-    
-    
-    
+
+     
 }
