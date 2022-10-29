@@ -13,6 +13,10 @@ import java.util.ArrayList;
 public class DoctorDirectory {
     public static ArrayList<Doctor>docDir = new ArrayList<Doctor>();
 
+    public static Doctor doc1(){
+        return new Doctor(9,3,"Vipul", 26, 76632621, "vipul@", "male", 20, 02221,"Boylston",  "Boston", "MA","MBBS","Brain Specialist","vip");
+        
+    }
     public static ArrayList<Doctor> getDocDir() {
         return docDir;
     }

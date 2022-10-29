@@ -8,6 +8,9 @@ import Healthmodel.PatientDirectory;
 import Healthmodel.PersonDirectory;
 import Healthmodel.VitalSignsHistory;
 import Healthmodel.DoctorDirectory;
+import Healthmodel.DoctorDirectory;
+import Healthmodel.EncounterHistory;
+import Healthmodel.HospitalDirectory;
 
 
 /**
@@ -18,16 +21,21 @@ public class MainFrame extends javax.swing.JFrame {
     PersonDirectory personDir;
     PatientDirectory patientDir;
     VitalSignsHistory vitalDir;
+    DoctorDirectory docDir;
+    HospitalDirectory hospDir;
+    EncounterHistory encHis;
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
-        PersonDirectory.personDir.add(PersonDirectory.person1());
-        PatientDirectory.patientDir.add(PatientDirectory.patient1());
+        
         personDir=new PersonDirectory();
         patientDir=new PatientDirectory();
         vitalDir=new VitalSignsHistory();
+        docDir=new DoctorDirectory();
+        hospDir=new HospitalDirectory();
+        encHis=new EncounterHistory();
     }
 
     /**
@@ -93,9 +101,19 @@ public class MainFrame extends javax.swing.JFrame {
         roleSysAdmin.add(itemSysDoctor);
 
         itemSysHospital.setText("Hospital");
+        itemSysHospital.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemSysHospitalActionPerformed(evt);
+            }
+        });
         roleSysAdmin.add(itemSysHospital);
 
         itemSysEncounters.setText("Encounters");
+        itemSysEncounters.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemSysEncountersActionPerformed(evt);
+            }
+        });
         roleSysAdmin.add(itemSysEncounters);
 
         menuRoles.add(roleSysAdmin);
@@ -193,9 +211,24 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void itemSysDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSysDoctorActionPerformed
         // TODO add your handling code here:
-        DoctorRegistration registerDoctor = new DoctorRegistration();
+        DoctorRegistration registerDoctor = new DoctorRegistration(docDir,personDir);
         registerDoctor.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_itemSysDoctorActionPerformed
+
+    private void itemSysHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSysHospitalActionPerformed
+        // TODO add your handling code here:
+        HospitalRegistration registerHosp = new HospitalRegistration(hospDir);
+        registerHosp.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_itemSysHospitalActionPerformed
+
+    private void itemSysEncountersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSysEncountersActionPerformed
+        // TODO add your handling code here:
+        EncounterSysRegistration registerSysEnc = new EncounterSysRegistration(encHis,personDir, patientDir,docDir,vitalDir);
+        registerSysEnc.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_itemSysEncountersActionPerformed
 
     /**
      * @param args the command line arguments

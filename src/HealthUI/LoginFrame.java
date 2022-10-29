@@ -4,8 +4,11 @@
  */
 package HealthUI;
 
+import Healthmodel.Doctor;
+import Healthmodel.DoctorDirectory;
 import Healthmodel.Patient;
 import Healthmodel.PatientDirectory;
+import Healthmodel.PersonDirectory;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,8 +20,22 @@ public class LoginFrame extends javax.swing.JFrame {
     /**
      * Creates new form LoginFrame
      */
+    static PatientDirectory patientDir;
+    static DoctorDirectory docDir;
+    
     public LoginFrame() {    
         initComponents();
+        PersonDirectory.personDir.add(PersonDirectory.person1());
+        PatientDirectory.patientDir.add(PatientDirectory.patient1());
+        DoctorDirectory.docDir.add(DoctorDirectory.doc1());
+    }
+    public LoginFrame(PatientDirectory patientDir) {
+        initComponents();
+        LoginFrame.patientDir = patientDir;
+    }
+     public LoginFrame(DoctorDirectory docDir) {
+        initComponents();
+        LoginFrame.docDir = docDir;
     }
 
     /**
@@ -140,14 +157,31 @@ public class LoginFrame extends javax.swing.JFrame {
         else{
             int validUser=0;
             System.out.println("Checking User");
-            for(Patient patient: PatientDirectory.patientDir){
-                if(txtEmail.equals(patient.getPatientUsername())&& Password.equals(patient.getPatientpwd())){
-                
+            for(Patient patient: PatientDirectory.getPatientDir()){
+                if(username.equals(patient.person.getEmailId())&& password.equals(patient.getPatientpwd())){
+                    PatientLoggedInPage patientLoggedIn = new PatientLoggedInPage(username);
+                    patientLoggedIn.setVisible(true);
+                    setVisible(false);
+                    validUser=1;
                 }
-        
-        }
-            JOptionPane.showMessageDialog(null, "Invalid Account");
-        }
+            }
+            
+            for(Doctor doc: DoctorDirectory.getDocDir()){
+                if(username.equals(doc.person.getEmailId()) && password.equals(doc.getDocPwd())){
+                    DoctorLoggedInPage docLoggedIn = new DoctorLoggedInPage(username);
+                    docLoggedIn.setVisible(true);
+                    setVisible(false);
+                    validUser = 1;
+                } 
+            }
+            if(validUser == 0){
+                System.out.println("#########");
+                JOptionPane.showMessageDialog(null, "Invalid Account");
+            }
+            
+            
+        }    
+      
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated

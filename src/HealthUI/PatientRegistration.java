@@ -670,7 +670,6 @@ public class PatientRegistration extends javax.swing.JFrame {
         patient.person.residence.newCity = patientCity.getText();
         patient.person.residence.state = patientState.getText();
         patient.setPatientId(Integer.parseInt(patientID.getText()));
-        patient.setPatientUsername(patientUsername.getText());
         String patient_pwd=new String(patientPassword.getPassword());
         patient.setPatientpwd(patient_pwd);
         patient.vitalSigns.setBloodPressure(Float.parseFloat(vitalsBP.getText()));
@@ -795,7 +794,7 @@ public class PatientRegistration extends javax.swing.JFrame {
         selectedPatient.person.residence.newCity = patientCity.getText();
         selectedPatient.person.residence.state = patientState.getText();
         selectedPatient.setPatientId(Integer.parseInt(patientID.getText()));
-        selectedPatient.setPatientUsername(patientUsername.getText());
+        
         String patient_pwd=new String(patientPassword.getPassword());
         selectedPatient.setPatientpwd(patient_pwd);
         selectedPatient.vitalSigns.setBloodPressure(Float.parseFloat(vitalsBP.getText()));

@@ -22,7 +22,10 @@ public class Encounter {
     public Person person = new Person();
     public Doctor doc = new Doctor();
     public VitalSigns vitalSigns = new VitalSigns();
-
+    public Encounter(){
+    }
+    
+    
     public int getEncId() {
         return encId;
     }

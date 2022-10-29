@@ -15,7 +15,6 @@ public class Patient {
     public float patientWeight;
     public float patientHeight;
     public String bloodGroup;
-    public String patientUsername;
     public String patientpwd;
     public VitalSigns vitalSigns = new VitalSigns();
     
@@ -30,7 +29,7 @@ public class Patient {
         this.patientWeight=patientWeight;
         this.patientHeight=patientHeight;
         this.bloodGroup=bloodGroup;
-        this.patientUsername=emailId;
+        
         this.patientpwd=patientpwd;
         this.person.contactNo=contactNo;
         this.person.emailId=emailId;
@@ -67,14 +66,6 @@ public class Patient {
 
     public String getBloodGroup() {
         return bloodGroup;
-    }
-
-    public String getPatientUsername() {
-        return patientUsername;
-    }
-
-    public void setPatientUsername(String patientUsername) {
-        this.patientUsername = patientUsername;
     }
 
     public String getPatientpwd() {

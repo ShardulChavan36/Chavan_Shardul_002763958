@@ -10,26 +10,37 @@ package Healthmodel;
  */
 public class Doctor {
     public Person person = new Person();
-    public int docId;
-    public String docUsername; 
+    public int docId; 
     public String docQualifications;
     public String docSpecialize;
     public String docPwd;
-    
+    public Doctor(){
+    }
+    public Doctor(int docId,int personID,String name, int age, long contactNo, String emailId, String gender, int houseNo, int zip, String communityName, String newCity, String state, String docQualifications, String docSpecialize,String docPwd){
+        this.docId=docId;
+        this.person.personId=personID;
+        this.person.name=name;
+        this.person.age=age;
+        this.person.gender=gender;        
+        this.docPwd=docPwd;
+        this.docQualifications=docQualifications;
+        this.docSpecialize=docSpecialize;
+        this.person.contactNo=contactNo;
+        this.person.emailId=emailId;
+        this.person.gender=gender;
+        this.person.residence.houseNo=houseNo;
+        this.person.residence.zip=zip;
+        this.person.residence.communityName=communityName;
+        this.person.residence.newCity=newCity;
+        this.person.residence.state=state;
+    }
+        
     public int getDocId() {
         return docId;
     }
 
     public void setDocId(int docId) {
         this.docId = docId;
-    }
-
-    public String getDocUsername() {
-        return docUsername;
-    }
-
-    public void setDocUsername(String docUsername) {
-        this.docUsername = docUsername;
     }
 
     public String getDocQualifications() {
