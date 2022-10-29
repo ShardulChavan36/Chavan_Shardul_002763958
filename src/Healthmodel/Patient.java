@@ -17,12 +17,30 @@ public class Patient {
     public String bloodGroup;
     public String patientUsername;
     public String patientpwd;
-    
-    
-    
     public VitalSigns vitalSigns = new VitalSigns();
     
-
+    public Patient(){
+    }
+    public Patient(int patientId,int personID,String name, int age, long contactNo, String emailId, String gender, int houseNo, int zip, String communityName, String newCity, String state,float patientWeight,float patientHeight, String bloodGroup, String patientpwd){
+        this.patientId=patientId;
+        this.person.personId=personID;
+        this.person.name=name;
+        this.person.age=age;
+        this.person.gender=gender;
+        this.patientWeight=patientWeight;
+        this.patientHeight=patientHeight;
+        this.bloodGroup=bloodGroup;
+        this.patientUsername=emailId;
+        this.patientpwd=patientpwd;
+        this.person.contactNo=contactNo;
+        this.person.emailId=emailId;
+        this.person.gender=gender;
+        this.person.residence.houseNo=houseNo;
+        this.person.residence.zip=zip;
+        this.person.residence.communityName=communityName;
+        this.person.residence.newCity=newCity;
+        this.person.residence.state=state;
+    }
     public int getPatientId() {
         return patientId;
     }
@@ -66,8 +84,6 @@ public class Patient {
     public void setPatientpwd(String patientpwd) {
         this.patientpwd = patientpwd;
     }
-    
-    
 
     public void setBloodGroup(String bloodGroup) {
         this.bloodGroup = bloodGroup;
@@ -83,8 +99,9 @@ public class Patient {
     
     @Override
     public String toString(){
-        return person.name;
+        return String.valueOf(patientId);
     }
+    
     
     
 }

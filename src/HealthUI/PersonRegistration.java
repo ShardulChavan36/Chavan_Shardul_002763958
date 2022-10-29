@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PersonRegistration extends javax.swing.JFrame {
     PersonDirectory personDir;
+    Person person= new Person();
     
     public PersonRegistration(PersonDirectory personDir) {
         initComponents();
@@ -203,7 +204,7 @@ public class PersonRegistration extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "Person ID", "Contact No", "Email ID", "Gender", "Age", "House", "Community", "City", "State"
+                "Person ID", "Name", "Age", "Contact No", "Email ID", "Gender", "House", "Community", "City", "State"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -456,21 +457,21 @@ public class PersonRegistration extends javax.swing.JFrame {
 
     private void personRegisterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personRegisterBtnActionPerformed
         // TODO add your handling code here:
-        Person p1=new Person();
-        p1.setName(personName.getText());
-        p1.setAge(Integer.parseInt(personAge.getText()));
-        p1.setContactNo(Long.parseLong(personContact.getText()));
-        p1.setEmailId(personEmailID.getText());
-        p1.setGender(personGender.getText());
-        p1.residence.communityName= personCommunity.getText();
-        p1.residence.houseNo= Integer.parseInt(personHouse.getText());
-        p1.residence.zip = Integer.parseInt(personZipCode.getText());
-        p1.residence.newCity = personCity.getText();
-        p1.residence.state = personState.getText();
-        p1.setPersonId(Integer.parseInt(personID.getText()));
-        p1.setUserName(personCreateUsername.getText());
-        p1.setPwd(personCreatePswd.getText());
-        PersonDirectory.personDir.add(p1);
+        Person person=new Person();
+        person.setName(personName.getText());
+        person.setAge(Integer.parseInt(personAge.getText()));
+        person.setContactNo(Long.parseLong(personContact.getText()));
+        person.setEmailId(personEmailID.getText());
+        person.setGender(personGender.getText());
+        person.residence.communityName= personCommunity.getText();
+        person.residence.houseNo= Integer.parseInt(personHouse.getText());
+        person.residence.zip = Integer.parseInt(personZipCode.getText());
+        person.residence.newCity = personCity.getText();
+        person.residence.state = personState.getText();
+        person.setPersonId(Integer.parseInt(personID.getText()));
+        person.setUserName(personCreateUsername.getText());
+        person.setPwd(personCreatePswd.getText());
+        PersonDirectory.personDir.add(person);
         JOptionPane.showMessageDialog(this, "Person Successfully Added");
         personDispTable();
     }//GEN-LAST:event_personRegisterBtnActionPerformed
@@ -500,6 +501,7 @@ public class PersonRegistration extends javax.swing.JFrame {
         personCity.setText(selectedPerson.residence.getNewCity());
         personState.setText(selectedPerson.residence.getState());
         personZipCode.setText(String.valueOf(selectedPerson.residence.getZip()));
+        
         //        SimpleDateFormat strdate = new SimpleDateFormat("MMM-dd-yyyy");
         //PhotoDisp.setIcon(selectedEmp.getIcon());
     }//GEN-LAST:event_personViewBtnActionPerformed
@@ -519,18 +521,18 @@ public class PersonRegistration extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) personTable.getModel();
         model.setRowCount(0);
         System.out.println("Done");
-        for (Person p:personDir.getPersonDir()){
+        for (Person person: PersonDirectory.personDir){
             Object[] row=new Object[10];
-            row[0]=p;
-            row[1]=p.getPersonId();
-            row[2]=p.getContactNo();
-            row[3]=p.getEmailId();
-            row[4]=p.getGender();
-            row[5]=p.getAge();
-            row[6]=p.residence.getHouseNo();
-            row[7]=p.residence.getCommunityName();
-            row[8]=p.residence.getNewCity();
-            row[9]=p.residence.getState();
+            row[0]=person;
+            row[1]=person.getPersonId();
+            row[2]=person.getContactNo();
+            row[3]=person.getEmailId();
+            row[4]=person.getGender();
+            row[5]=person.getAge();
+            row[6]=person.residence.getHouseNo();
+            row[7]=person.residence.getCommunityName();
+            row[8]=person.residence.getNewCity();
+            row[9]=person.residence.getState();
             model.addRow(row);
     }
     }

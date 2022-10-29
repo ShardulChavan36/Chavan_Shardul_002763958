@@ -13,14 +13,6 @@ import java.util.ArrayList;
 public class PersonDirectory{
     public static ArrayList<Person>personDir = new ArrayList<Person>();
 
-    public static ArrayList<Person> getPersonDir() {
-        return personDir;
-    }
-
-    public static void setPersonDir(ArrayList<Person> personDir) {
-        PersonDirectory.personDir = personDir;
-    }
-    
     public static Person person1(){
         return new Person(2,"Shardul", 21, 766371921, "abc", "male", 10, 02121,"Boylston",  "Boston", "MA");
         

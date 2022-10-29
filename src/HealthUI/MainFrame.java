@@ -7,6 +7,7 @@ package HealthUI;
 import Healthmodel.PatientDirectory;
 import Healthmodel.PersonDirectory;
 import Healthmodel.VitalSignsHistory;
+import Healthmodel.DoctorDirectory;
 
 
 /**
@@ -22,6 +23,8 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+        PersonDirectory.personDir.add(PersonDirectory.person1());
+        PatientDirectory.patientDir.add(PatientDirectory.patient1());
         personDir=new PersonDirectory();
         patientDir=new PatientDirectory();
         vitalDir=new VitalSignsHistory();
@@ -82,6 +85,11 @@ public class MainFrame extends javax.swing.JFrame {
         roleSysAdmin.add(itemSysPatient);
 
         itemSysDoctor.setText("Doctor");
+        itemSysDoctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemSysDoctorActionPerformed(evt);
+            }
+        });
         roleSysAdmin.add(itemSysDoctor);
 
         itemSysHospital.setText("Hospital");
@@ -156,7 +164,7 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         PatientRegistration registerPatient = new PatientRegistration(patientDir,personDir,vitalDir);
         registerPatient.setVisible(true);
-        
+        setVisible(false);
 
     }//GEN-LAST:event_itemSysPatientActionPerformed
 
@@ -179,8 +187,15 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         PersonRegistration registerPerson = new PersonRegistration(personDir);
         registerPerson.setVisible(true);
+        setVisible(false);
         
     }//GEN-LAST:event_itemSysPersonActionPerformed
+
+    private void itemSysDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSysDoctorActionPerformed
+        // TODO add your handling code here:
+        DoctorRegistration registerDoctor = new DoctorRegistration();
+        registerDoctor.setVisible(true);
+    }//GEN-LAST:event_itemSysDoctorActionPerformed
 
     /**
      * @param args the command line arguments

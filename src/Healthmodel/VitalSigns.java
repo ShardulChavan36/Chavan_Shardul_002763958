@@ -11,19 +11,11 @@ import javax.swing.JTextField;
  * @author chava
  */
 public class VitalSigns {
-    public String vitals;
     public float bodyTemperature;
     public float bloodPressure;
-    public float oxygenLevel;
-    public float heatRate;
+    public float sugarLevel;
+    public String symptoms;
 
-    public String getVitals() {
-        return vitals;
-    }
-
-    public void setVitals(String vitals) {
-        this.vitals = vitals;
-    }
 
     public float getBodyTemperature() {
         return bodyTemperature;
@@ -41,21 +33,23 @@ public class VitalSigns {
         this.bloodPressure = bloodPressure;
     }
 
-    public float getOxygenLevel() {
-        return oxygenLevel;
+    public float getSugarLevel() {
+        return sugarLevel;
     }
 
-    public void setOxygenLevel(float oxygenLevel) {
-        this.oxygenLevel = oxygenLevel;
+    public void setSugarLevel(float sugarLevel) {
+        this.sugarLevel = sugarLevel;
     }
 
-    public float getHeatRate() {
-        return heatRate;
+    public String getSymptoms() {
+        return symptoms;
     }
 
-    public void setHeatRate(float heatRate) {
-        this.heatRate = heatRate;
+    public void setSymptoms(String symptoms) {
+        this.symptoms = symptoms;
     }
+
+    
     
     
 }
