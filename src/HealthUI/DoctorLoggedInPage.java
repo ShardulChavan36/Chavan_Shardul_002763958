@@ -4,6 +4,7 @@
  */
 package HealthUI;
 
+import Healthmodel.Doctor;
 import Healthmodel.DoctorDirectory;
 import Healthmodel.EncounterHistory;
 import Healthmodel.PatientDirectory;
@@ -17,14 +18,20 @@ import Healthmodel.VitalSignsHistory;
 public class DoctorLoggedInPage extends javax.swing.JFrame {
     DoctorDirectory docDir = new DoctorDirectory();
     EncounterHistory encHis= new EncounterHistory();
-    
+    Doctor doc1;
     public String username;
+    String community;
     /**
      * Creates new form DoctorLoggedInPage
      */
     public DoctorLoggedInPage(String username) {
         initComponents();
         this.username=username;
+        for(Doctor d:DoctorDirectory.getDocDir()){
+            if(username.equals(d.getEmailId())){
+                doc1 = d;
+            }
+        }
     }
 
     /**
@@ -143,7 +150,7 @@ public class DoctorLoggedInPage extends javax.swing.JFrame {
 
     private void createEncounterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEncounterActionPerformed
         // TODO add your handling code here:
-        EncounterRegistration  encounterRegistration=new EncounterRegistration(docDir,username);
+        EncounterRegistration  encounterRegistration=new EncounterRegistration( encHis,doc1.getDocId(),doc1.getEmailId());
         SplitPane.setRightComponent(encounterRegistration);
     }//GEN-LAST:event_createEncounterActionPerformed
 

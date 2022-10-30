@@ -6,6 +6,8 @@ package HealthUI;
 
 import Healthmodel.Doctor;
 import Healthmodel.DoctorDirectory;
+import Healthmodel.EncounterHistory;
+import Healthmodel.HospitalDirectory;
 import Healthmodel.Patient;
 import Healthmodel.PatientDirectory;
 import Healthmodel.PersonDirectory;
@@ -22,6 +24,8 @@ public class LoginFrame extends javax.swing.JFrame {
      */
     static PatientDirectory patientDir;
     static DoctorDirectory docDir;
+    static HospitalDirectory hospDir;
+    static EncounterHistory encHis;
     
     public LoginFrame() {    
         initComponents();
@@ -36,6 +40,14 @@ public class LoginFrame extends javax.swing.JFrame {
      public LoginFrame(DoctorDirectory docDir) {
         initComponents();
         LoginFrame.docDir = docDir;
+    }
+     public LoginFrame(HospitalDirectory hospDir) {
+        initComponents();
+        LoginFrame.hospDir = hospDir;
+    }
+     public LoginFrame(EncounterHistory encHis) {
+        initComponents();
+        LoginFrame.encHis = encHis;
     }
 
     /**
@@ -168,7 +180,7 @@ public class LoginFrame extends javax.swing.JFrame {
             
             for(Doctor doc: DoctorDirectory.getDocDir()){
                 if(username.equals(doc.getEmailId()) && password.equals(doc.getDocPwd())){
-                    DoctorLoggedInPage docLoggedIn = new DoctorLoggedInPage(username);
+                    DoctorLoggedInPage docLoggedIn = new DoctorLoggedInPage(doc.getEmailId());
                     docLoggedIn.setVisible(true);
                     setVisible(false);
                     validUser = 1;

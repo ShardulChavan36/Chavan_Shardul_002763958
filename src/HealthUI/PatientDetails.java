@@ -6,6 +6,7 @@ package HealthUI;
 
 import Healthmodel.Patient;
 import Healthmodel.PatientDirectory;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -440,7 +441,7 @@ public class PatientDetails extends javax.swing.JPanel {
         BloodGrpCombo.setSelectedItem(patient.getBloodGroup());
         patientDetailsHeight.setText(String.valueOf(patient.getPatientHeight()));
         patientDetailsWeight.setText(String.valueOf(patient.getPatientWeight()));   
-
+        JOptionPane.showMessageDialog(this, "Your Information is Updated");
         
     }
  

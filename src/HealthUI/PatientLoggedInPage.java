@@ -185,6 +185,8 @@ public class PatientLoggedInPage extends javax.swing.JFrame {
 
     private void BookPatientEncounterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookPatientEncounterBtnActionPerformed
         // TODO add your handling code here:
+        PatientBookEncounter ptBookEnc= new PatientBookEncounter(patientUsername, encHis);
+        SplitPane.setRightComponent(ptBookEnc);
     }//GEN-LAST:event_BookPatientEncounterBtnActionPerformed
 
     private void ViewEncounterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewEncounterBtnActionPerformed

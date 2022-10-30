@@ -25,5 +25,19 @@ public class DoctorDirectory {
         DoctorDirectory.docDir = docDir;
     }
     
+    public boolean checkDID(int dID){
+        int flag = 0;
+        for(Doctor d: getDocDir()){
+            if(d.getDocId()== dID)
+                flag = 1;
+            else
+                flag = 0;
+        }
+        if(flag>0)
+            return true;
+        else
+            return false;
+    } 
+    
     
 }
