@@ -17,15 +17,14 @@ import Healthmodel.VitalSignsHistory;
 public class DoctorLoggedInPage extends javax.swing.JFrame {
     DoctorDirectory docDir = new DoctorDirectory();
     EncounterHistory encHis= new EncounterHistory();
-    PatientDirectory patientDir = new PatientDirectory();
-    VitalSignsHistory vitalDir = new VitalSignsHistory();
-    PersonDirectory personDir = new PersonDirectory();
     
+    public String username;
     /**
      * Creates new form DoctorLoggedInPage
      */
     public DoctorLoggedInPage(String username) {
         initComponents();
+        this.username=username;
     }
 
     /**
@@ -144,7 +143,7 @@ public class DoctorLoggedInPage extends javax.swing.JFrame {
 
     private void createEncounterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEncounterActionPerformed
         // TODO add your handling code here:
-        EncounterRegistration  encounterRegistration=new EncounterRegistration(personDir,patientDir,docDir,encHis,vitalDir);
+        EncounterRegistration  encounterRegistration=new EncounterRegistration(docDir,username);
         SplitPane.setRightComponent(encounterRegistration);
     }//GEN-LAST:event_createEncounterActionPerformed
 

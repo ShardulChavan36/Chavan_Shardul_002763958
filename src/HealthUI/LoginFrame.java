@@ -158,7 +158,7 @@ public class LoginFrame extends javax.swing.JFrame {
             int validUser=0;
             System.out.println("Checking User");
             for(Patient patient: PatientDirectory.getPatientDir()){
-                if(username.equals(patient.person.getEmailId())&& password.equals(patient.getPatientpwd())){
+                if(username.equals(patient.getEmailId())&& password.equals(patient.getPatientpwd())){
                     PatientLoggedInPage patientLoggedIn = new PatientLoggedInPage(username);
                     patientLoggedIn.setVisible(true);
                     setVisible(false);
@@ -167,7 +167,7 @@ public class LoginFrame extends javax.swing.JFrame {
             }
             
             for(Doctor doc: DoctorDirectory.getDocDir()){
-                if(username.equals(doc.person.getEmailId()) && password.equals(doc.getDocPwd())){
+                if(username.equals(doc.getEmailId()) && password.equals(doc.getDocPwd())){
                     DoctorLoggedInPage docLoggedIn = new DoctorLoggedInPage(username);
                     docLoggedIn.setVisible(true);
                     setVisible(false);

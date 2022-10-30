@@ -12,19 +12,53 @@ import java.util.Date;
  *
  * @author chava
  */
-public class Encounter {
+public class Encounter extends VitalSigns {
     public int encId;
     public Date encDate;
     public LocalTime encTime;
     public String encDiagnosis;
     
     public Patient patient = new Patient();
-    public Person person = new Person();
     public Doctor doc = new Doctor();
-    public VitalSigns vitalSigns = new VitalSigns();
     public Encounter(){
     }
-    
+    public Encounter (int encId,int patientId,int docId,String name, String name1, String emailId,Date encDate,LocalTime encTime ){
+        this.encId=encId;
+        this.patient.patientId=patientId;
+        this.doc.docId=docId;
+        this.patient.name=name;
+        this.doc.name=name1;
+        this.doc.emailId=emailId;
+        this.encDate=encDate;
+        this.encTime=encTime;
+    }
+    public Encounter (int encId,int patientId,int docId,Date encDate,LocalTime encTime){
+        this.encId=encId;
+        this.patient.patientId=patientId;
+        this.doc.docId=docId;
+        this.encDate=encDate;
+        this.encTime=encTime;
+    }
+    public Encounter(int encId,int patientId,int docId,String name, String name1, String emailId,Date encDate,LocalTime encTime,float bodyTemperature, float bloodPressure,float sugarLevel,String symptoms,String encDiagnosis ){
+        super(bodyTemperature,  bloodPressure, sugarLevel, symptoms);
+        this.encId=encId;
+        this.patient.patientId=patientId;
+        this.doc.docId=docId;
+        this.patient.name=name;
+        this.doc.name=name1;
+        this.doc.emailId=emailId;
+        
+        this.encDate=encDate;
+        this.encTime=encTime;
+        this.encDiagnosis=encDiagnosis;
+        
+        
+        this.bodyTemperature=bodyTemperature;
+        this.bloodPressure=bloodPressure;
+        this.sugarLevel=sugarLevel;
+        this.symptoms=symptoms; 
+       
+    }
     
     public int getEncId() {
         return encId;
@@ -77,17 +111,15 @@ public class Encounter {
     }
     
 
-    public VitalSigns getVitalSigns() {
-        return vitalSigns;
-    }
-
-    public void setVitalSigns(VitalSigns vitalSigns) {
-        this.vitalSigns = vitalSigns;
-    }
+    
     
     @Override 
     public String toString(){
         return String.valueOf(encId);
     }
-        
+
+    public void setDate(Date date) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
 }

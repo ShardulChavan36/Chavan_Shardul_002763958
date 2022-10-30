@@ -33,14 +33,17 @@ public class EncounterRegistration extends javax.swing.JPanel {
     EncounterHistory encHis;
     PatientDirectory patientDir;
     VitalSignsHistory vitalDir;
-    public EncounterRegistration(PersonDirectory personDir,PatientDirectory patientDir,DoctorDirectory docDir,EncounterHistory encHis,VitalSignsHistory vitalDir) {
+    public String username;
+    public EncounterRegistration(DoctorDirectory docDir,String username) {
         initComponents();
         this.docDir = docDir;
-        this.encHis = encHis;
-        this.patientDir = patientDir;
-        this.vitalDir = vitalDir;
-        this.personDir=personDir;
+//        this.encHis = encHis;
+//        this.patientDir = patientDir;
+//        this.vitalDir = vitalDir;
+//        this.personDir=personDir;
+        this.username=username;
         encDispTable();
+        viewPatientDetails(username);
     }
 
     /**
@@ -453,17 +456,17 @@ public class EncounterRegistration extends javax.swing.JPanel {
         }
         DefaultTableModel model1 = (DefaultTableModel) encounterRegistrationTable.getModel();
         Encounter selectedEnc=(Encounter)model1.getValueAt(selectedRowIndex1,0);
-        PatientName.setText(selectedEnc.patient.person.getName());
+        PatientName.setText(selectedEnc.patient.getName());
         patientID.setText(String.valueOf(selectedEnc.patient.getPatientId()));
         doctorID.setText(String.valueOf(selectedEnc.doc.getDocId()));
-        doctorName.setText(selectedEnc.doc.person.getName());
+        doctorName.setText(selectedEnc.doc.getName());
         encounterID.setText(String.valueOf(selectedEnc.getEncId()));
         DateChooser.setDate(selectedEnc.getEncDate());
         timePicker.setTime(selectedEnc.getEncTime());
-        vitalsBP.setText(String.valueOf(selectedEnc.patient.vitalSigns.getBloodPressure()));
-        vitalsTemp.setText(String.valueOf(selectedEnc.patient.vitalSigns.getBodyTemperature()));
-        patientSugarLevel.setText(String.valueOf(selectedEnc.patient.vitalSigns.getSugarLevel()));
-        vitalSymptoms.setText(selectedEnc.patient.vitalSigns.getSymptoms());
+        vitalsBP.setText(String.valueOf(selectedEnc.getBloodPressure()));
+        vitalsTemp.setText(String.valueOf(selectedEnc.getBodyTemperature()));
+        patientSugarLevel.setText(String.valueOf(selectedEnc.getSugarLevel()));
+        vitalSymptoms.setText(selectedEnc.getSymptoms());
         EncDiagnosis.setText(selectedEnc.getEncDiagnosis());
         
     }//GEN-LAST:event_ViewBtnActionPerformed
@@ -501,12 +504,12 @@ public class EncounterRegistration extends javax.swing.JPanel {
 //        SimpleDateFormat encounterDate = new SimpleDateFormat("MMM-dd-yyyy");
         enc.setEncDate(DateChooser.getDate());
         enc.setEncTime(timePicker.getTime());
-        enc.patient.person.setName(PatientName.getText());
-        enc.doc.person.setName(doctorName.getText());
-        enc.patient.vitalSigns.setSugarLevel(Float.parseFloat(patientSugarLevel.getText()));
-        enc.patient.vitalSigns.setBloodPressure(Float.parseFloat(vitalsBP.getText()));
-        enc.patient.vitalSigns.setBodyTemperature(Float.parseFloat(vitalsTemp.getText()));
-        enc.patient.vitalSigns.setSymptoms(vitalSymptoms.getText());
+        enc.patient.setName(PatientName.getText());
+        enc.doc.setName(doctorName.getText());
+        enc.setSugarLevel(Float.parseFloat(patientSugarLevel.getText()));
+        enc.setBloodPressure(Float.parseFloat(vitalsBP.getText()));
+        enc.setBodyTemperature(Float.parseFloat(vitalsTemp.getText()));
+        enc.setSymptoms(vitalSymptoms.getText());
         enc.setEncDiagnosis(EncDiagnosis.getText());
         EncounterHistory.encHis.add(enc);
         JOptionPane.showMessageDialog(this, "Encounter Successfully Added");
@@ -522,14 +525,14 @@ public class EncounterRegistration extends javax.swing.JPanel {
         int selectedRowIndex1=encounterRegistrationTable.getSelectedRow();
         DefaultTableModel model1 = (DefaultTableModel) encounterRegistrationTable.getModel();
         Encounter selectedEnc=(Encounter)model1.getValueAt(selectedRowIndex1,0);
-        selectedEnc.patient.person.setName(PatientName.getText());
-        selectedEnc.doc.person.setName(doctorName.getText());
+        selectedEnc.patient.setName(PatientName.getText());
+        selectedEnc.doc.setName(doctorName.getText());
         selectedEnc.setEncDate(DateChooser.getDate());
         selectedEnc.setEncTime(timePicker.getTime());
-        selectedEnc.patient.vitalSigns.setBloodPressure(Float.parseFloat(vitalsBP.getText()));
-        selectedEnc.patient.vitalSigns.setSugarLevel(Float.parseFloat(patientSugarLevel.getText()));
-        selectedEnc.patient.vitalSigns.setBodyTemperature(Float.parseFloat(vitalsTemp.getText()));
-        selectedEnc.patient.vitalSigns.setSymptoms(vitalSymptoms.getText());
+        selectedEnc.setBloodPressure(Float.parseFloat(vitalsBP.getText()));
+        selectedEnc.setSugarLevel(Float.parseFloat(patientSugarLevel.getText()));
+        selectedEnc.setBodyTemperature(Float.parseFloat(vitalsTemp.getText()));
+        selectedEnc.setSymptoms(vitalSymptoms.getText());
         selectedEnc.setEncDiagnosis((EncDiagnosis.getText()));
         encDispTable();
         
@@ -556,20 +559,52 @@ public class EncounterRegistration extends javax.swing.JPanel {
                 Object[] row=new Object[12];
                 row[0]=es;
                 row[1]=es.doc.getDocId();
-                row[2]=es.doc.person.getName();
+                row[2]=es.doc.getName();
                 row[3]=es.patient.getPatientId();
-                row[4]=es.patient.person.getName();
+                row[4]=es.patient.getName();
                 row[5]=es.getEncDate();
                 row[6]=es.getEncTime();
-                row[7]=es.patient.vitalSigns.getBloodPressure();
-                row[8]=es.patient.vitalSigns.getSugarLevel();
-                row[9]=es.patient.vitalSigns.getBodyTemperature();
-                row[10]=es.patient.vitalSigns.getSymptoms();
+                row[7]=es.getBloodPressure();
+                row[8]=es.getSugarLevel();
+                row[9]=es.getBodyTemperature();
+                row[10]=es.getSymptoms();
                 row[11]=es.getEncDiagnosis();
                 model1.addRow(row);
             }
         }
+    public void viewPatientDetails(String username){
 
+        Encounter enc = new Encounter();
+        int docFound = 0;
+        for(Encounter e:EncounterHistory.getEncHis()){
+            if(username.equals(e.doc.getEmailId())){
+                System.out.println(e.doc.getEmailId());
+                enc = e;
+                docFound = 1;
+            }
+            else{
+                System.out.println("-----------");
+                System.out.println(username);
+                System.out.println(e.doc.getEmailId());
+            }
+        }
+        
+        PatientName.setText(enc.patient.getName());
+        patientID.setText(String.valueOf( enc.patient.getPatientId()));
+        doctorID.setText(String.valueOf(enc.doc.getDocId()));
+        doctorName.setText(enc.doc.getName());
+        encounterID.setText(String.valueOf(enc.getEncId()));
+        DateChooser.setDate(enc.getEncDate());
+        timePicker.setTime(enc.getEncTime());
+        vitalsBP.setText(String.valueOf(enc.getBloodPressure()));
+        vitalsTemp.setText(String.valueOf(enc.getBodyTemperature()));
+        patientSugarLevel.setText(String.valueOf(enc.getSugarLevel()));
+        vitalSymptoms.setText(enc.getSymptoms());
+        EncDiagnosis.setText(enc.getEncDiagnosis());
+       
+        
+    }
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CreateEncounter;
     private com.toedter.calendar.JDateChooser DateChooser;

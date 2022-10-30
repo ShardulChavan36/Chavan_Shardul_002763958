@@ -4,6 +4,10 @@
  */
 package HealthUI;
 
+import Healthmodel.EncounterHistory;
+import Healthmodel.Patient;
+import Healthmodel.PatientDirectory;
+
 /**
  *
  * @author chava
@@ -13,8 +17,18 @@ public class PatientLoggedInPage extends javax.swing.JFrame {
     /**
      * Creates new form PatientLoggedInPage
      */
+    Patient patient;
+    PatientDirectory patientDir = new PatientDirectory();
+    EncounterHistory encHis = new EncounterHistory();
+    public String patientUsername;
     public PatientLoggedInPage(String username) {
         initComponents();
+        this.patientUsername=username;
+    for(Patient p:PatientDirectory.getPatientDir()){
+            if(username.equals(p.getEmailId())){
+                patient = p;
+            }
+        }
     }
 
     /**
@@ -29,11 +43,11 @@ public class PatientLoggedInPage extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         patientLogoutBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jSplitPane2 = new javax.swing.JSplitPane();
+        SplitPane = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        viewDetsBtn = new javax.swing.JButton();
+        BookPatientEncounterBtn = new javax.swing.JButton();
+        ViewEncounterBtn = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -56,9 +70,9 @@ public class PatientLoggedInPage extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(377, 377, 377)
+                .addGap(385, 385, 385)
                 .addComponent(jLabel1)
-                .addGap(309, 309, 309)
+                .addGap(301, 301, 301)
                 .addComponent(patientLogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -74,24 +88,24 @@ public class PatientLoggedInPage extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButton1.setText("Update Details");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        viewDetsBtn.setText("View & Update Details");
+        viewDetsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                viewDetsBtnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("View Doctors");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BookPatientEncounterBtn.setText("Book appt & View Doctors");
+        BookPatientEncounterBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BookPatientEncounterBtnActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Encounter History");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        ViewEncounterBtn.setText("Encounter History");
+        ViewEncounterBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                ViewEncounterBtnActionPerformed(evt);
             }
         });
 
@@ -100,26 +114,26 @@ public class PatientLoggedInPage extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(30, 30, 30))
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BookPatientEncounterBtn)
+                    .addComponent(viewDetsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ViewEncounterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addComponent(jButton1)
-                .addGap(51, 51, 51)
-                .addComponent(jButton2)
-                .addGap(48, 48, 48)
-                .addComponent(jButton3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(152, 152, 152)
+                .addComponent(viewDetsBtn)
+                .addGap(50, 50, 50)
+                .addComponent(BookPatientEncounterBtn)
+                .addGap(47, 47, 47)
+                .addComponent(ViewEncounterBtn)
+                .addContainerGap(222, Short.MAX_VALUE))
         );
 
-        jSplitPane2.setLeftComponent(jPanel1);
+        SplitPane.setLeftComponent(jPanel1);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -134,21 +148,21 @@ public class PatientLoggedInPage extends javax.swing.JFrame {
             .addGap(0, 540, Short.MAX_VALUE)
         );
 
-        jSplitPane2.setRightComponent(jPanel3);
+        SplitPane.setRightComponent(jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jSplitPane2)
+            .addComponent(SplitPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSplitPane2))
+                .addComponent(SplitPane))
         );
 
         pack();
@@ -162,17 +176,22 @@ public class PatientLoggedInPage extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_patientLogoutBtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void viewDetsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewDetsBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        PatientDetails ptDets = new PatientDetails(patientDir,patientUsername);
+        SplitPane.setRightComponent(ptDets);
+        
+    }//GEN-LAST:event_viewDetsBtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void BookPatientEncounterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookPatientEncounterBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_BookPatientEncounterBtnActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void ViewEncounterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewEncounterBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        PatientEncounterDetails ptEncDets = new PatientEncounterDetails(patient.getPatientId());
+        SplitPane.setRightComponent(ptEncDets);
+    }//GEN-LAST:event_ViewEncounterBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -210,14 +229,14 @@ public class PatientLoggedInPage extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton BookPatientEncounterBtn;
+    private javax.swing.JSplitPane SplitPane;
+    private javax.swing.JButton ViewEncounterBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JButton patientLogoutBtn;
+    private javax.swing.JButton viewDetsBtn;
     // End of variables declaration//GEN-END:variables
 }

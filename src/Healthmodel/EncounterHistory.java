@@ -4,7 +4,9 @@
  */
 package Healthmodel;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -24,4 +26,18 @@ public class EncounterHistory {
     encHis.remove(e);
     }
     
+    public Encounter addNewEncounter(int encId,int patientId,int docId,String name, String name1, String emailId,Date encDate,LocalTime encTime){
+        Encounter enc = new Encounter(encId, patientId, docId,name,  name1,  emailId, encDate, encTime);
+        //System.out.println("hereeeeeeeeee");
+        //System.out.println(newEmployee);
+        encHis.add(enc);
+        return enc;
+        
+    }
+    public Encounter addNewEncounter(int encId,int patientId,int docId,Date encDate,LocalTime encTime){
+        Encounter enc = new Encounter(encId, patientId, docId,encDate, encTime);
+        encHis.add(enc);
+        return enc;
+        
+    }
 }

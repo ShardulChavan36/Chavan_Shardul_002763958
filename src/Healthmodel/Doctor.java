@@ -4,35 +4,40 @@
  */
 package Healthmodel;
 
+import java.util.Date;
+
 /**
  *
  * @author chava
  */
-public class Doctor {
-    public Person person = new Person();
+public class Doctor extends Person{
     public int docId; 
     public String docQualifications;
     public String docSpecialize;
     public String docPwd;
+    public Hospital hosp = new Hospital();
     public Doctor(){
     }
     public Doctor(int docId,int personID,String name, int age, long contactNo, String emailId, String gender, int houseNo, int zip, String communityName, String newCity, String state, String docQualifications, String docSpecialize,String docPwd){
+        super( personID, name, age,  contactNo,  emailId,  gender,  houseNo,  zip,  communityName,  newCity,  state);
         this.docId=docId;
-        this.person.personId=personID;
-        this.person.name=name;
-        this.person.age=age;
-        this.person.gender=gender;        
+        this.personId=personID;
+        this.name=name;
+        this.age=age;
+        this.gender=gender;        
+        
+        this.contactNo=contactNo;
+        this.emailId=emailId;
+        this.gender=gender;
+        this.residence.houseNo=houseNo;
+        this.residence.zip=zip;
+        this.residence.communityName=communityName;
+        this.residence.newCity=newCity;
+        this.residence.state=state;
+        
         this.docPwd=docPwd;
         this.docQualifications=docQualifications;
         this.docSpecialize=docSpecialize;
-        this.person.contactNo=contactNo;
-        this.person.emailId=emailId;
-        this.person.gender=gender;
-        this.person.residence.houseNo=houseNo;
-        this.person.residence.zip=zip;
-        this.person.residence.communityName=communityName;
-        this.person.residence.newCity=newCity;
-        this.person.residence.state=state;
     }
         
     public int getDocId() {
@@ -59,13 +64,6 @@ public class Doctor {
         this.docSpecialize = docSpecialize;
     }
 
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
-    }
 
     public String getDocPwd() {
         return docPwd;

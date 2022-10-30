@@ -4,23 +4,40 @@
  */
 package Healthmodel;
 
+import java.util.Date;
+
 /**
  *
  * @author chava
  */
 public class Person {
     public String name;
+    public Date dob;
     public int age;
     public long contactNo;
     public String emailId;
     public String gender;
     public int personId;
-    public String userName;
     public String pwd;
     public String rePwd;
     
     public House residence = new House();
     
+    public Person(int personID,String name,  int age, long contactNo, String emailId, String gender, int houseNo, int zip, String communityName, String newCity, String state){
+        this.personId=personID;
+        this.name=name;
+//        this.dob=dob;
+        this.age=age;
+        this.gender=gender;
+        this.contactNo=contactNo;
+        this.emailId=emailId;
+        this.gender=gender;
+        this.residence.houseNo=houseNo;
+        this.residence.zip=zip;
+        this.residence.communityName=communityName;
+        this.residence.newCity=newCity;
+        this.residence.state=state;
+    }
     public Person(){
     }
     
@@ -32,6 +49,14 @@ public class Person {
         this.name = name;
     }
 
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+    
     public int getAge() {
         return age;
     }
@@ -72,13 +97,6 @@ public class Person {
         this.personId = personId;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
     public String getPwd() {
         return pwd;
@@ -103,19 +121,6 @@ public class Person {
     
     
     
-    public Person(int personID,String name, int age, long contactNo, String emailId, String gender, int houseNo, int zip, String communityName, String newCity, String state){
-        this.personId=personID;
-        this.name=name;
-        this.age=age;
-        this.gender=gender;
-        this.contactNo=contactNo;
-        this.emailId=emailId;
-        this.gender=gender;
-        this.residence.houseNo=houseNo;
-        this.residence.zip=zip;
-        this.residence.communityName=communityName;
-        this.residence.newCity=newCity;
-        this.residence.state=state;
-    }
+    
     
 }

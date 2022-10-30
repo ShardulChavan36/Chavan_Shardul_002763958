@@ -10,12 +10,19 @@ import javax.swing.JTextField;
  *
  * @author chava
  */
-public class VitalSigns {
+public class VitalSigns extends Patient{
     public float bodyTemperature;
     public float bloodPressure;
     public float sugarLevel;
     public String symptoms;
-
+public VitalSigns(float bodyTemperature, float bloodPressure,float sugarLevel,String symptoms){
+    this.bodyTemperature=bodyTemperature;
+    this.bloodPressure=bloodPressure;
+    this.sugarLevel=sugarLevel;
+    this.symptoms=symptoms;    
+}
+public VitalSigns(){
+}
 
     public float getBodyTemperature() {
         return bodyTemperature;

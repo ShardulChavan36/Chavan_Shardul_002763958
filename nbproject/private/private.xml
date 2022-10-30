@@ -3,22 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/chava/OneDrive/Documents/NetBeansProjects/HealthCareApp/src/HealthUI/EncounterRegistration.java</file>
-            <file>file:/C:/Users/chava/OneDrive/Documents/NetBeansProjects/HealthCareApp/src/Healthmodel/VitalSignsHistory.java</file>
-            <file>file:/C:/Users/chava/OneDrive/Documents/NetBeansProjects/HealthCareApp/src/Healthmodel/Patient.java</file>
-            <file>file:/C:/Users/chava/OneDrive/Documents/NetBeansProjects/HealthCareApp/src/Healthmodel/PatientDirectory.java</file>
-            <file>file:/C:/Users/chava/OneDrive/Documents/NetBeansProjects/HealthCareApp/src/HealthUI/CommunityRegistration.java</file>
-            <file>file:/C:/Users/chava/OneDrive/Documents/NetBeansProjects/HealthCareApp/src/HealthUI/PersonRegistration.java</file>
-            <file>file:/C:/Users/chava/OneDrive/Documents/NetBeansProjects/HealthCareApp/src/Healthmodel/Encounter.java</file>
-            <file>file:/C:/Users/chava/OneDrive/Documents/NetBeansProjects/HealthCareApp/src/Healthmodel/EncounterHistory.java</file>
-            <file>file:/C:/Users/chava/OneDrive/Documents/NetBeansProjects/HealthCareApp/src/HealthUI/HospitalRegistration.java</file>
-            <file>file:/C:/Users/chava/OneDrive/Documents/NetBeansProjects/HealthCareApp/src/Healthmodel/PersonDirectory.java</file>
+            <file>file:/C:/Users/chava/OneDrive/Documents/NetBeansProjects/HealthCareApp/src/HealthUI/LoginFrame.java</file>
+            <file>file:/C:/Users/chava/OneDrive/Documents/NetBeansProjects/HealthCareApp/src/Healthmodel/DoctorDirectory.java</file>
             <file>file:/C:/Users/chava/OneDrive/Documents/NetBeansProjects/HealthCareApp/src/HealthUI/MainFrame.java</file>
             <file>file:/C:/Users/chava/OneDrive/Documents/NetBeansProjects/HealthCareApp/src/Healthmodel/Person.java</file>
+            <file>file:/C:/Users/chava/OneDrive/Documents/NetBeansProjects/HealthCareApp/src/Healthmodel/Patient.java</file>
+            <file>file:/C:/Users/chava/OneDrive/Documents/NetBeansProjects/HealthCareApp/src/Healthmodel/PatientDirectory.java</file>
             <file>file:/C:/Users/chava/OneDrive/Documents/NetBeansProjects/HealthCareApp/src/HealthUI/PatientRegistration.java</file>
-            <file>file:/C:/Users/chava/OneDrive/Documents/NetBeansProjects/HealthCareApp/src/Healthmodel/VitalSigns.java</file>
+            <file>file:/C:/Users/chava/OneDrive/Documents/NetBeansProjects/HealthCareApp/src/HealthUI/PersonRegistration.java</file>
+            <file>file:/C:/Users/chava/OneDrive/Documents/NetBeansProjects/HealthCareApp/src/Healthmodel/Doctor.java</file>
             <file>file:/C:/Users/chava/OneDrive/Documents/NetBeansProjects/HealthCareApp/src/HealthUI/DoctorRegistration.java</file>
-            <file>file:/C:/Users/chava/OneDrive/Documents/NetBeansProjects/HealthCareApp/src/HealthUI/DoctorLoggedInPage.java</file>
+            <file>file:/C:/Users/chava/OneDrive/Documents/NetBeansProjects/HealthCareApp/src/HealthUI/HospitalRegistration.java</file>
         </group>
     </open-files>
 </project-private>

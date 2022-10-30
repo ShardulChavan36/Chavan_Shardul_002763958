@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PersonRegistration extends javax.swing.JFrame {
     PersonDirectory personDir;
-    Person person= new Person();
+//    Person person= new Person();
     
     public PersonRegistration(PersonDirectory personDir) {
         initComponents();
@@ -63,8 +63,6 @@ public class PersonRegistration extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         personZipCode = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        personCreateUsername = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         personCreatePswd = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
@@ -158,8 +156,6 @@ public class PersonRegistration extends javax.swing.JFrame {
                 personZipCodeActionPerformed(evt);
             }
         });
-
-        jLabel13.setText("Username");
 
         jLabel21.setText("Password");
 
@@ -259,21 +255,14 @@ public class PersonRegistration extends javax.swing.JFrame {
                                             .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING)))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(82, 82, 82)
+                                        .addGap(83, 83, 83)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(1, 1, 1)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel21)
-                                                    .addComponent(jLabel20))
-                                                .addGap(41, 41, 41)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(personReenterPswd)
-                                                    .addComponent(personCreatePswd, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel13)
-                                                .addGap(87, 87, 87)
-                                                .addComponent(personCreateUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(jLabel21)
+                                            .addComponent(jLabel20))
+                                        .addGap(41, 41, 41)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(personReenterPswd)
+                                            .addComponent(personCreatePswd, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(0, 0, Short.MAX_VALUE)))))
                         .addGap(45, 45, 45)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -373,16 +362,12 @@ public class PersonRegistration extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12)
                             .addComponent(personZipCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel13)
-                                    .addComponent(personCreateUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(10, 10, 10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(personCreatePswd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                                 .addComponent(jLabel21)))
                         .addGap(7, 7, 7)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -399,7 +384,7 @@ public class PersonRegistration extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -469,7 +454,7 @@ public class PersonRegistration extends javax.swing.JFrame {
         person.residence.newCity = personCity.getText();
         person.residence.state = personState.getText();
         person.setPersonId(Integer.parseInt(personID.getText()));
-        person.setUserName(personCreateUsername.getText());
+        
         person.setPwd(personCreatePswd.getText());
         PersonDirectory.personDir.add(person);
         JOptionPane.showMessageDialog(this, "Person Successfully Added");
@@ -577,7 +562,6 @@ public class PersonRegistration extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel19;
@@ -598,7 +582,6 @@ public class PersonRegistration extends javax.swing.JFrame {
     private javax.swing.JTextField personCommunity;
     private javax.swing.JTextField personContact;
     private javax.swing.JTextField personCreatePswd;
-    private javax.swing.JTextField personCreateUsername;
     private javax.swing.JButton personDeleteBtn;
     private javax.swing.JTextField personEmailID;
     private javax.swing.JTextField personGender;

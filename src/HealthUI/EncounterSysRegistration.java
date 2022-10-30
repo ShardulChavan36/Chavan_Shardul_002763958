@@ -29,7 +29,7 @@ public class EncounterSysRegistration extends javax.swing.JFrame {
     /**
      * Creates new form EncounterSysRegistration
      */
-    Person person = new Person(); 
+    
     VitalSigns vitalSigns = new VitalSigns();
     Patient patient = new Patient();
     Doctor doc = new Doctor();
@@ -39,13 +39,13 @@ public class EncounterSysRegistration extends javax.swing.JFrame {
     EncounterHistory encHis;
     PatientDirectory patientDir;
     VitalSignsHistory vitalDir;
-    public EncounterSysRegistration(EncounterHistory encHis,PersonDirectory personDir,PatientDirectory patientDir,DoctorDirectory docDir,VitalSignsHistory vitalDir) {
+    int randomEncId;
+    public EncounterSysRegistration(EncounterHistory encHis,PatientDirectory patientDir,DoctorDirectory docDir,VitalSignsHistory vitalDir) {
         initComponents();
         this.docDir = docDir;
         this.encHis = encHis;
         this.patientDir = patientDir;
         this.vitalDir = vitalDir;
-        this.personDir=personDir;
         encDispTable();
     }
 
@@ -69,12 +69,12 @@ public class EncounterSysRegistration extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         patientName = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        docID = new javax.swing.JTextField();
         EncounterID = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        docName = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        patientID = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         EncounterDate = new com.toedter.calendar.JDateChooser();
         updateBtn = new javax.swing.JButton();
@@ -158,10 +158,9 @@ public class EncounterSysRegistration extends javax.swing.JFrame {
 
         jLabel4.setText("Encounter ID");
 
-        jTextField2.setEditable(false);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        docID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                docIDActionPerformed(evt);
             }
         });
 
@@ -169,18 +168,17 @@ public class EncounterSysRegistration extends javax.swing.JFrame {
 
         jLabel5.setText("Doctor Name");
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        docName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                docNameActionPerformed(evt);
             }
         });
 
         jLabel8.setText("Date");
 
-        jTextField9.setEditable(false);
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        patientID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                patientIDActionPerformed(evt);
             }
         });
 
@@ -207,12 +205,12 @@ public class EncounterSysRegistration extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(patientName)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(docID, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(patientID, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(EncounterID, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
-                                    .addComponent(jTextField4))
+                                    .addComponent(docName))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(111, 111, 111))))
         );
@@ -225,15 +223,15 @@ public class EncounterSysRegistration extends javax.swing.JFrame {
                     .addComponent(patientName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(patientID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(docID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(docName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -248,9 +246,19 @@ public class EncounterSysRegistration extends javax.swing.JFrame {
 
         updateBtn.setText("Update");
         updateBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBtnActionPerformed(evt);
+            }
+        });
 
         delBtn.setText("Delete");
         delBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        delBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delBtnActionPerformed(evt);
+            }
+        });
 
         jSeparator1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -344,33 +352,55 @@ public class EncounterSysRegistration extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_viewBtnActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void docIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_docIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_docIDActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void docNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_docNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_docNameActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void patientIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_patientIDActionPerformed
 
     private void createEncounterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEncounterActionPerformed
         // TODO add your handling code here:
         Encounter enc = new Encounter();
-        enc.setEncId((int)(Math.random()*999+100));
-        enc.patient.setPatientId((int)(Math.random()*9999+1000));
-        enc.doc.setDocId((int)(Math.random()*99+10));
-        SimpleDateFormat encounterDate = new SimpleDateFormat("MMM-dd-yyyy");
-        String encDate = encounterDate.format(EncounterDate.getDate());
+        randomEncId=(int)(Math.random()*999+100);
+        
+        for(Encounter e:EncounterHistory.getEncHis()){
+            if(randomEncId==e.getEncId()){
+               
+               randomEncId =(int)(Math.random()*999+100);
+            }
+            
+        }
+        enc.setEncId(randomEncId);
+        
+        
+//        enc.setEncId((int)(Math.random()*999+100));
+        enc.patient.setPatientId(Integer.parseInt(patientID.getText()));
+        enc.doc.setDocId(Integer.parseInt(docID.getText()));
+//        SimpleDateFormat encounterDate = new SimpleDateFormat("MMM-dd-yyyy");
+//        String encDate = encounterDate.format(EncounterDate.getDate());
 //        enc.setEncDate(encDate);
-        enc.patient.person.setName(patientName.getText());
+        enc.setEncDate(EncounterDate.getDate());
+        enc.patient.setName(patientName.getText());
+        enc.doc.setName(docName.getText());
         EncounterHistory.encHis.add(enc);
         JOptionPane.showMessageDialog(this, "Encounter Successfully Added");
         encDispTable();
         
     }//GEN-LAST:event_createEncounterActionPerformed
+
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateBtnActionPerformed
+
+    private void delBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_delBtnActionPerformed
     public void encDispTable(){
         DefaultTableModel model1 = (DefaultTableModel) encounterSysTable.getModel();
         model1.setRowCount(0);
@@ -380,9 +410,9 @@ public class EncounterSysRegistration extends javax.swing.JFrame {
             row[0]=es;
             row[1]=es.getEncDate();
             row[2]=es.patient.getPatientId();
-            row[3]=es.patient.person.getName();
+            row[3]=es.patient.getName();
             row[4]=es.doc.getDocId();
-            row[5]=es.doc.person.getName();
+            row[5]=es.doc.getName();
             model1.addRow(row);
         }
     }
@@ -426,6 +456,8 @@ public class EncounterSysRegistration extends javax.swing.JFrame {
     private javax.swing.JTextField EncounterID;
     private javax.swing.JButton createEncounter;
     private javax.swing.JButton delBtn;
+    private javax.swing.JTextField docID;
+    private javax.swing.JTextField docName;
     private javax.swing.JTable encounterSysTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -438,10 +470,8 @@ public class EncounterSysRegistration extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JButton patientHomeBtn;
+    private javax.swing.JTextField patientID;
     private javax.swing.JButton patientLogoutBtn;
     private javax.swing.JTextField patientName;
     private javax.swing.JButton updateBtn;

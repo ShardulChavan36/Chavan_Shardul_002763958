@@ -180,7 +180,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void itemSysPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSysPatientActionPerformed
         // TODO add your handling code here:
-        PatientRegistration registerPatient = new PatientRegistration(patientDir,personDir,vitalDir);
+        PatientRegistration registerPatient = new PatientRegistration(patientDir);
         registerPatient.setVisible(true);
         setVisible(false);
 
@@ -211,7 +211,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void itemSysDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSysDoctorActionPerformed
         // TODO add your handling code here:
-        DoctorRegistration registerDoctor = new DoctorRegistration(docDir,personDir);
+        OgDoctorRegistration registerDoctor = new OgDoctorRegistration(docDir);
         registerDoctor.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_itemSysDoctorActionPerformed
@@ -225,7 +225,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void itemSysEncountersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSysEncountersActionPerformed
         // TODO add your handling code here:
-        EncounterSysRegistration registerSysEnc = new EncounterSysRegistration(encHis,personDir, patientDir,docDir,vitalDir);
+        EncounterSysRegistration registerSysEnc = new EncounterSysRegistration(encHis, patientDir,docDir,vitalDir);
         registerSysEnc.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_itemSysEncountersActionPerformed
