@@ -88,22 +88,11 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="itemCommCity">
               <Properties>
-                <Property name="text" type="java.lang.String" value="City"/>
+                <Property name="text" type="java.lang.String" value="Address"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemCommCityActionPerformed"/>
               </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="itemCommCommunity">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Community"/>
-                <Property name="focusTraversalPolicyProvider" type="boolean" value="true"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="itemCommHouses">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Houses"/>
-              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>

@@ -62,8 +62,6 @@ public class MainFrame extends javax.swing.JFrame {
         itemHospEncounters = new javax.swing.JMenuItem();
         roleCommAdmin = new javax.swing.JMenu();
         itemCommCity = new javax.swing.JMenuItem();
-        itemCommCommunity = new javax.swing.JMenuItem();
-        itemCommHouses = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -141,20 +139,13 @@ public class MainFrame extends javax.swing.JFrame {
 
         roleCommAdmin.setText("Community Admin");
 
-        itemCommCity.setText("City");
+        itemCommCity.setText("Address");
         itemCommCity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemCommCityActionPerformed(evt);
             }
         });
         roleCommAdmin.add(itemCommCity);
-
-        itemCommCommunity.setText("Community");
-        itemCommCommunity.setFocusTraversalPolicyProvider(true);
-        roleCommAdmin.add(itemCommCommunity);
-
-        itemCommHouses.setText("Houses");
-        roleCommAdmin.add(itemCommHouses);
 
         menuRoles.add(roleCommAdmin);
 
@@ -192,6 +183,9 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void itemCommCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCommCityActionPerformed
         // TODO add your handling code here:
+        Residence frame = new Residence();
+        frame.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_itemCommCityActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
@@ -288,8 +282,6 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogout;
     private javax.swing.JMenuItem itemCommCity;
-    private javax.swing.JMenuItem itemCommCommunity;
-    private javax.swing.JMenuItem itemCommHouses;
     private javax.swing.JMenuItem itemHospDoctor;
     private javax.swing.JMenuItem itemHospEncounters;
     private javax.swing.JMenuItem itemHospHospital;
