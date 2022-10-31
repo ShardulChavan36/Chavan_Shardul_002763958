@@ -4,13 +4,19 @@
  */
 package HealthUI;
 
+import Healthmodel.City;
+import Healthmodel.Community;
 import Healthmodel.Hospital;
 import Healthmodel.HospitalDirectory;
+import Healthmodel.House;
 import Healthmodel.Patient;
 import Healthmodel.PatientDirectory;
 import Healthmodel.Person;
 import Healthmodel.PersonDirectory;
+import Healthmodel.State;
+import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,9 +31,19 @@ public class HospitalRegistration extends javax.swing.JFrame {
      */
    Hospital hosp = new Hospital();
    HospitalDirectory hospDir;
+   Community houseDir;
     public HospitalRegistration(HospitalDirectory hospDir) {
         initComponents();
         this.hospDir=hospDir;
+        if(houseDir == null){
+            ArrayList<House> houseDir = new ArrayList<>();
+        }
+        else{
+            this.houseDir = houseDir;
+        }
+        dropdownCity();
+        dropdownCommunity();
+//        dropdownHouse();
         hospDispTable();
     }
 
@@ -240,6 +256,11 @@ public class HospitalRegistration extends javax.swing.JFrame {
         jLabel5.setText("State");
 
         cityCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cityCombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cityComboItemStateChanged(evt);
+            }
+        });
         cityCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cityComboActionPerformed(evt);
@@ -247,6 +268,11 @@ public class HospitalRegistration extends javax.swing.JFrame {
         });
 
         communityCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        communityCombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                communityComboItemStateChanged(evt);
+            }
+        });
 
         hospAddress.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -423,6 +449,55 @@ public class HospitalRegistration extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void dropdownCity() {
+            ArrayList<String> cityDropdown = new ArrayList<>();
+            for (int i = 0; i < State.cityDir.size(); i++) {
+                cityDropdown.add(State.cityDir.get(i).newCity);
+            }
+
+            String[] citySDropdown = cityDropdown.toArray(new String[cityDropdown.size()]);
+            DefaultComboBoxModel<String> yearsSDropdownModel = new DefaultComboBoxModel<>(citySDropdown);
+            cityCombo.setModel(yearsSDropdownModel);
+        }
+    
+    public void dropdownCommunity() {
+        ArrayList<String> communityDropdown = new ArrayList<>();
+        String val;    
+        if(cityCombo.getSelectedIndex() == -1){
+            val = "";
+        }
+        else{
+            val = cityCombo.getSelectedItem().toString();
+        }
+        City.communityDirectory.stream().filter(communityValue -> (communityValue.newCity == null ? val.equals("") : communityValue.newCity.equals(val))).forEachOrdered(communityValue -> {
+                communityDropdown.add(String.valueOf(communityValue.communityName));
+            });
+        String[] communitySDropdown = communityDropdown.toArray(new String[communityDropdown.size()]);
+        DefaultComboBoxModel<String> SDropdownModel = new DefaultComboBoxModel<>(communitySDropdown);
+        this.communityCombo.setModel(SDropdownModel);
+        
+        
+    }
+    
+//    public void dropdownHouse(){
+//        
+//        ArrayList<String> houseDropdown = new ArrayList<>();
+//        String val;
+//        if(communityCombo.getSelectedIndex() == -1){
+//            val = "";
+//        }
+//        else{
+//            val = communityCombo.getSelectedItem().toString();
+//        }
+//        
+//        Community.houseDir.stream().filter(houseValue -> (houseValue.communityName == null ? val.equals("") : houseValue.communityName.equals(val))).forEachOrdered(houseValue -> {
+//            houseDropdown.add(String.valueOf(houseValue.getHouseNo()));
+//        });
+//        String[] houseSDropdown = houseDropdown.toArray(new String[houseDropdown.size()]);
+//        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(houseSDropdown);
+//        this.houseCombo.setModel(model);
+//        
+//    }
     private void hospitalHomeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hospitalHomeBtnActionPerformed
         // TODO add your handling code here:
 
@@ -606,6 +681,15 @@ public class HospitalRegistration extends javax.swing.JFrame {
     private void hospAddressKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hospAddressKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_hospAddressKeyTyped
+
+    private void cityComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cityComboItemStateChanged
+        // TODO add your handling code here:
+        dropdownCommunity();
+    }//GEN-LAST:event_cityComboItemStateChanged
+
+    private void communityComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_communityComboItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_communityComboItemStateChanged
 
     public void hospDispTable(){
         DefaultTableModel model1 = (DefaultTableModel) hospTable.getModel();

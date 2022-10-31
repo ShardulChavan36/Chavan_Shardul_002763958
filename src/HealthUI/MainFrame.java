@@ -127,12 +127,27 @@ public class MainFrame extends javax.swing.JFrame {
         roleHospAdmin.add(itemHospPatient);
 
         itemHospDoctor.setText("Doctor");
+        itemHospDoctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemHospDoctorActionPerformed(evt);
+            }
+        });
         roleHospAdmin.add(itemHospDoctor);
 
         itemHospHospital.setText("Hospital");
+        itemHospHospital.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemHospHospitalActionPerformed(evt);
+            }
+        });
         roleHospAdmin.add(itemHospHospital);
 
         itemHospEncounters.setText("Encounters");
+        itemHospEncounters.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemHospEncountersActionPerformed(evt);
+            }
+        });
         roleHospAdmin.add(itemHospEncounters);
 
         menuRoles.add(roleHospAdmin);
@@ -179,6 +194,9 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void itemHospPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemHospPatientActionPerformed
         // TODO add your handling code here:
+        HospPatientRegister hospregisterPatient = new HospPatientRegister(patientDir);
+        hospregisterPatient.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_itemHospPatientActionPerformed
 
     private void itemCommCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCommCityActionPerformed
@@ -223,6 +241,27 @@ public class MainFrame extends javax.swing.JFrame {
         registerSysEnc.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_itemSysEncountersActionPerformed
+
+    private void itemHospDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemHospDoctorActionPerformed
+        HospDocRegister hospregisterDoctor = new HospDocRegister(docDir);
+        hospregisterDoctor.setVisible(true);
+        setVisible(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemHospDoctorActionPerformed
+
+    private void itemHospHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemHospHospitalActionPerformed
+        // TODO add your handling code here:
+        HosphospRegister registerHosp1 = new HosphospRegister(hospDir);
+        registerHosp1.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_itemHospHospitalActionPerformed
+
+    private void itemHospEncountersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemHospEncountersActionPerformed
+        // TODO add your handling code here:
+        HospEncRegister registerSysEnc1 = new HospEncRegister(encHis, patientDir,docDir,vitalDir);
+        registerSysEnc1.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_itemHospEncountersActionPerformed
 
     /**
      * @param args the command line arguments
