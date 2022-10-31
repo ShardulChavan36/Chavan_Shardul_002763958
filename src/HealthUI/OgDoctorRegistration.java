@@ -6,6 +6,8 @@ package HealthUI;
 
 import Healthmodel.Doctor;
 import Healthmodel.DoctorDirectory;
+import Healthmodel.Patient;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -48,7 +50,6 @@ public class OgDoctorRegistration extends javax.swing.JFrame {
         doctorContact = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        doctorGender = new javax.swing.JTextField();
         doctorID = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
@@ -56,17 +57,18 @@ public class OgDoctorRegistration extends javax.swing.JFrame {
         docotorQualifications = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         doctorSpecialization = new javax.swing.JTextField();
+        genderCombo = new javax.swing.JComboBox<>();
         jPanel6 = new javax.swing.JPanel();
-        patientHouse2 = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        patientCommunity2 = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
-        patientCity2 = new javax.swing.JTextField();
         jLabel34 = new javax.swing.JLabel();
         patientState2 = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
         patientZipCode2 = new javax.swing.JTextField();
+        houseCombo = new javax.swing.JComboBox<>();
+        CommunityCombo = new javax.swing.JComboBox<>();
+        cityCombo = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         doctorRegisterBtn = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -109,15 +111,35 @@ public class OgDoctorRegistration extends javax.swing.JFrame {
 
         jLabel3.setText("Contact");
 
+        doctorName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                doctorNameKeyTyped(evt);
+            }
+        });
+
+        doctorContact.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                doctorContactKeyTyped(evt);
+            }
+        });
+
         jLabel5.setText("Docotor ID");
 
         jLabel6.setText("Gender");
+
+        doctorID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                doctorIDKeyTyped(evt);
+            }
+        });
 
         jLabel8.setText("DOB");
 
         jLabel9.setText("Qualifications");
 
         jLabel10.setText("Specialization");
+
+        genderCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Gender", "Male", "Female", "Other" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -126,30 +148,26 @@ public class OgDoctorRegistration extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel9)
-                        .addComponent(jLabel5)
-                        .addComponent(jLabel6)
-                        .addComponent(jLabel8)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(doctorName, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(64, 64, 64)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(doctorID, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(doctorContact, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(doctorGender, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(docotorQualifications, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(doctorSpecialization, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addGap(212, 212, 212)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel8))
+                        .addGap(64, 64, 64)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(doctorName, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                                .addComponent(doctorID, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(doctorContact, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                                .addComponent(docotorQualifications, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(doctorSpecialization, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(genderCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,16 +186,13 @@ public class OgDoctorRegistration extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(doctorGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel8))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(37, 37, 37)
+                    .addComponent(jLabel6)
+                    .addComponent(genderCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(docotorQualifications, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -185,34 +200,16 @@ public class OgDoctorRegistration extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(doctorSpecialization, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Address"));
-
-        patientHouse2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patientHouse2ActionPerformed(evt);
-            }
-        });
 
         jLabel21.setText("House");
 
         jLabel22.setText("Community");
 
-        patientCommunity2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patientCommunity2ActionPerformed(evt);
-            }
-        });
-
         jLabel23.setText("City");
-
-        patientCity2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patientCity2ActionPerformed(evt);
-            }
-        });
 
         jLabel34.setText("State");
 
@@ -223,6 +220,17 @@ public class OgDoctorRegistration extends javax.swing.JFrame {
                 patientZipCode2ActionPerformed(evt);
             }
         });
+        patientZipCode2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                patientZipCode2KeyTyped(evt);
+            }
+        });
+
+        houseCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        CommunityCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cityCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -237,19 +245,20 @@ public class OgDoctorRegistration extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(patientHouse2, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                            .addComponent(patientCommunity2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel23)
-                                .addGap(18, 18, 18)
-                                .addComponent(patientCity2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(CommunityCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel34)
                                 .addGap(18, 18, 18)
-                                .addComponent(patientState2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(patientState2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                                .addComponent(houseCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel23)
+                                .addGap(18, 18, 18)
+                                .addComponent(cityCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)))
                         .addGap(25, 25, 25))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(patientZipCode2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -258,21 +267,20 @@ public class OgDoctorRegistration extends javax.swing.JFrame {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(patientHouse2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel21))
+                            .addComponent(jLabel21)
+                            .addComponent(houseCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel22)
-                            .addComponent(patientCommunity2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(CommunityCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel23)
-                            .addComponent(patientCity2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
+                            .addComponent(cityCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(patientState2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel34))))
@@ -314,6 +322,11 @@ public class OgDoctorRegistration extends javax.swing.JFrame {
 
         doctorDeleteBtn.setText("Delete");
         doctorDeleteBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        doctorDeleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                doctorDeleteBtnActionPerformed(evt);
+            }
+        });
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Account Details"));
 
@@ -486,29 +499,26 @@ public class OgDoctorRegistration extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void patientHouse2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientHouse2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_patientHouse2ActionPerformed
-
-    private void patientCommunity2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientCommunity2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_patientCommunity2ActionPerformed
-
-    private void patientCity2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientCity2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_patientCity2ActionPerformed
-
     private void patientZipCode2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientZipCode2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_patientZipCode2ActionPerformed
 
     private void doctorRegisterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorRegisterBtnActionPerformed
         // TODO add your handling code here:
+        if(validation()){
         Doctor doc=new Doctor();
         doc.setName(doctorName.getText());
         doc.setContactNo(Long.parseLong(doctorContact.getText()));
         doc.setEmailId(doctorEmail.getText());
-        doc.setGender(doctorGender.getText());
+        doc.setGender((String)genderCombo.getSelectedItem());
+        doc.setDob(jDateChooser1.getDate());
+        
+        doc.residence.setHouseNo((int)houseCombo.getSelectedItem());
+        doc.residence.communityName= (String)CommunityCombo.getSelectedItem();
+        doc.residence.zip = Integer.parseInt(patientZipCode2.getText());
+        doc.residence.newCity = (String)cityCombo.getSelectedItem();
+        doc.residence.state = patientState2.getText();
+               
         doc.setDocId(Integer.parseInt(doctorID.getText()));
         String Doc_pwd=new String(doctorPassword.getPassword()); 
         doc.setDocPwd(Doc_pwd);
@@ -517,6 +527,7 @@ public class OgDoctorRegistration extends javax.swing.JFrame {
         DoctorDirectory.docDir.add(doc);
         JOptionPane.showMessageDialog(this, "Doctor Successfully Added");
         DocDispTable();
+        }
     }//GEN-LAST:event_doctorRegisterBtnActionPerformed
 
     private void doctorViewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorViewBtnActionPerformed
@@ -532,10 +543,16 @@ public class OgDoctorRegistration extends javax.swing.JFrame {
         doctorID.setText(String.valueOf(selectedDoc.getDocId()));
         doctorContact.setText(String.valueOf(selectedDoc.getContactNo()));
         doctorEmail.setText(selectedDoc.getEmailId());
-        
-        doctorGender.setText(selectedDoc.getGender());
+        jDateChooser1.setDate(selectedDoc.getDob());
+        genderCombo.setSelectedItem(selectedDoc.getGender());
         doctorSpecialization.setText(selectedDoc.getDocSpecialize());
         docotorQualifications.setText(selectedDoc.getDocQualifications());
+        
+        houseCombo.setSelectedItem(selectedDoc.residence.getHouseNo());
+        cityCombo.setSelectedItem(selectedDoc.residence.getNewCity());
+        CommunityCombo.setSelectedItem(selectedDoc.residence.getCommunityName());
+        patientState2.setText(selectedDoc.residence.getState());
+        patientZipCode2.setText(String.valueOf(selectedDoc.residence.getZip()));
     }//GEN-LAST:event_doctorViewBtnActionPerformed
 
     private void doctorLogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorLogoutBtnActionPerformed
@@ -554,7 +571,88 @@ public class OgDoctorRegistration extends javax.swing.JFrame {
 
     private void doctorUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorUpdateBtnActionPerformed
         // TODO add your handling code here:
+        if(validation()){
+        int selectedRowIndex1=docTable.getSelectedRow();
+        DefaultTableModel model1 = (DefaultTableModel) docTable.getModel();
+        Doctor selectedDoc=(Doctor)model1.getValueAt(selectedRowIndex1,0);
+        selectedDoc.setName(doctorName.getText());
+       
+//        pt1.person.setAge(Integer.parseInt(patientAge.getText()));
+        selectedDoc.setContactNo(Long.parseLong(doctorID.getText()));
+        selectedDoc.setEmailId(doctorEmail.getText());
+        selectedDoc.setGender((String)genderCombo.getSelectedItem());
+        selectedDoc.residence.communityName= (String)CommunityCombo.getSelectedItem();
+        selectedDoc.residence.houseNo= (int)(houseCombo.getSelectedItem());
+        selectedDoc.residence.zip = Integer.parseInt(patientZipCode2.getText());
+        selectedDoc.residence.newCity = (String)cityCombo.getSelectedItem();
+        selectedDoc.residence.state = patientState2.getText();
+        selectedDoc.setDocId(Integer.parseInt(doctorID.getText()));
+        selectedDoc.setDocQualifications(docotorQualifications.getText());
+        selectedDoc.setDocSpecialize(doctorSpecialization.getText());
+        
+        JOptionPane.showMessageDialog(this, "Doctor Successfully Updated");
+        DocDispTable();
+        }    
     }//GEN-LAST:event_doctorUpdateBtnActionPerformed
+
+    private void doctorDeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorDeleteBtnActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex=docTable.getSelectedRow();
+        if (selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this,"Please select a row to delete");
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) docTable.getModel();
+        System.out.print(model.getValueAt(selectedRowIndex,0));
+        Doctor selectedDoc=(Doctor)model.getValueAt(selectedRowIndex,0);
+        docDir.delDocDetails(selectedDoc);
+        DocDispTable();
+    }//GEN-LAST:event_doctorDeleteBtnActionPerformed
+
+    private void doctorNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_doctorNameKeyTyped
+        // TODO add your handling code here:
+        char typedName = evt.getKeyChar();
+        if(!Character.isAlphabetic(typedName) && !Character.isWhitespace(typedName)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_doctorNameKeyTyped
+
+    private void doctorIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_doctorIDKeyTyped
+        // TODO add your handling code here:
+        char typedPatientID = evt.getKeyChar();
+        if(!Character.isDigit(typedPatientID)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_doctorIDKeyTyped
+
+    private void doctorContactKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_doctorContactKeyTyped
+    char typedContactNumber = evt.getKeyChar();
+        if(!Character.isDigit(typedContactNumber)){
+            evt.consume();
+        }
+        //Restrict the length to 10
+        if(doctorContact.getText().length() == 10){
+            evt.consume();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_doctorContactKeyTyped
+
+    private void patientZipCode2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_patientZipCode2KeyTyped
+        // TODO add your handling code here:
+        try{
+            //Allow only digits in Zip field
+            char typedZipCode = evt.getKeyChar();
+            if(!Character.isDigit(typedZipCode)){
+                evt.consume();
+            }
+            //Restrict the length to 5
+            if(patientZipCode2.getText().length() > 4){
+                evt.consume();
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_patientZipCode2KeyTyped
     public void DocDispTable(){
         DefaultTableModel model1 = (DefaultTableModel) docTable.getModel();
         model1.setRowCount(0);
@@ -571,6 +669,141 @@ public class OgDoctorRegistration extends javax.swing.JFrame {
             row[7]=d.getDocSpecialize();
             model1.addRow(row);
         }
+    }
+        boolean validation(){
+        String id, name, emailId, gender, community, city, state, username ;
+        String houseNumber, zipCode, qualify,special;
+        String contactDetails;
+        Date dob;
+        //String patternEmail = "^[A-Za-z0-9+_.-]+@(.+)$";
+        String patternEmail = "^[(a-zA-Z-0-9-\\_\\+\\.)]+@[(a-z-A-z)]+\\.[(a-zA-z)]{2,3}$";
+        String bmi = "[(0-9\\.)]{2,}$";
+               
+        id = doctorID.getText();
+        name = doctorName.getText();
+        emailId = doctorEmail.getText();
+        contactDetails = doctorContact.getText();
+//        age = ageTxt.getText();
+        dob = jDateChooser1.getDate();
+        houseNumber = (String)houseCombo.getSelectedItem();
+        community = (String)CommunityCombo.getSelectedItem();
+        city = (String)cityCombo.getSelectedItem();
+        state = patientState2.getText();
+        zipCode = patientZipCode2.getText();
+        //bloodGroup = (String) patientBloodGroupTxt.getSelectedItem();
+        qualify = docotorQualifications.getText();
+        special = doctorSpecialization.getText();
+        String password = new String(doctorPassword.getPassword());
+        String rePassword = new String(docReenterPwd.getPassword());
+       
+        if (id.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter Patient ID");
+            return false;
+        }
+       
+        if (name.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter name");
+            return false;
+        }
+       
+        if (contactDetails.equals("") || !(doctorContact.getText().length()==10))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter valid contact Number");
+            doctorContact.setText("");
+           
+            return false;
+        }
+        //emailIDTxt.getText().isBlank() &&
+        if( !doctorEmail.getText().matches(patternEmail)){
+                JOptionPane.showMessageDialog(this, "Please enter a valid Email.");
+                doctorEmail.setText("");
+                return false;
+            }
+       
+//        if (age.equals(""))
+//        {
+//            JOptionPane.showMessageDialog(this, "Please enter age");
+//            return false;
+//        }
+       
+        if (dob.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter Date of BIrth");
+            return false;
+        }
+       
+        if (houseNumber.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter houseNumber");
+            return false;
+        }
+       
+        if (community.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter community");
+            return false;
+        }
+       
+        if (city.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter city");
+            return false;
+        }
+       
+        if (state.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter state");
+            return false;
+        }
+       
+        if (zipCode.equals("") || !(patientZipCode2.getText().length()==5))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter zipCode");
+            patientZipCode2.setText("");
+            return false;
+        }
+       
+
+       
+        if( qualify.equals("") || !docotorQualifications.getText().matches(bmi)){
+                JOptionPane.showMessageDialog(this, "Please enter a valid height.");
+                docotorQualifications.setText("");
+                return false;
+            }
+       
+       
+
+       
+        if( special.equals("") || !doctorSpecialization.getText().matches(bmi)){
+                JOptionPane.showMessageDialog(this, "Please enter a valid weight.");
+                doctorSpecialization.setText("");
+                return false;
+            }
+      
+   
+       
+        if (password.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter password");
+            return false;
+        }
+       
+        if (rePassword.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter rePassword");
+            return false;
+        }
+       
+        if (!(password).equals(rePassword)){
+            JOptionPane.showMessageDialog(this, "Password doesn't match");
+            return false;
+        }
+       
+        return true;
+       
+    
     /**
      * @param args the command line arguments
      */
@@ -607,13 +840,14 @@ public class OgDoctorRegistration extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CommunityCombo;
+    private javax.swing.JComboBox<String> cityCombo;
     private javax.swing.JPasswordField docReenterPwd;
     private javax.swing.JTable docTable;
     private javax.swing.JTextField docotorQualifications;
     private javax.swing.JTextField doctorContact;
     private javax.swing.JButton doctorDeleteBtn;
     private javax.swing.JTextField doctorEmail;
-    private javax.swing.JTextField doctorGender;
     private javax.swing.JButton doctorHomeBtn;
     private javax.swing.JTextField doctorID;
     private javax.swing.JButton doctorLogoutBtn;
@@ -624,6 +858,8 @@ public class OgDoctorRegistration extends javax.swing.JFrame {
     private javax.swing.JTextField doctorSpecialization;
     private javax.swing.JButton doctorUpdateBtn;
     private javax.swing.JButton doctorViewBtn;
+    private javax.swing.JComboBox<String> genderCombo;
+    private javax.swing.JComboBox<String> houseCombo;
     private javax.swing.JButton jButton4;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
@@ -649,9 +885,6 @@ public class OgDoctorRegistration extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField patientCity2;
-    private javax.swing.JTextField patientCommunity2;
-    private javax.swing.JTextField patientHouse2;
     private javax.swing.JTextField patientState2;
     private javax.swing.JTextField patientZipCode2;
     // End of variables declaration//GEN-END:variables

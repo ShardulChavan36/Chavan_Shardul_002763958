@@ -17,6 +17,8 @@ import Healthmodel.PersonDirectory;
 import Healthmodel.VitalSigns;
 import Healthmodel.VitalSignsHistory;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -77,6 +79,8 @@ public class EncounterSysRegistration extends javax.swing.JFrame {
         patientID = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         EncounterDate = new com.toedter.calendar.JDateChooser();
+        timePicker1 = new com.github.lgooddatepicker.components.TimePicker();
+        jLabel9 = new javax.swing.JLabel();
         updateBtn = new javax.swing.JButton();
         delBtn = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -158,9 +162,23 @@ public class EncounterSysRegistration extends javax.swing.JFrame {
 
         jLabel4.setText("Encounter ID");
 
+        patientName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                patientNameKeyTyped(evt);
+            }
+        });
+
         docID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 docIDActionPerformed(evt);
+            }
+        });
+        docID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                docIDKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                docIDKeyTyped(evt);
             }
         });
 
@@ -173,6 +191,11 @@ public class EncounterSysRegistration extends javax.swing.JFrame {
                 docNameActionPerformed(evt);
             }
         });
+        docName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                docNameKeyTyped(evt);
+            }
+        });
 
         jLabel8.setText("Date");
 
@@ -181,43 +204,50 @@ public class EncounterSysRegistration extends javax.swing.JFrame {
                 patientIDActionPerformed(evt);
             }
         });
+        patientID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                patientIDKeyTyped(evt);
+            }
+        });
 
         jLabel10.setText("Patient ID");
+
+        jLabel9.setText("Time");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(93, 93, 93)
+                .addGap(92, 92, 92)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jLabel10)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(patientName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                    .addComponent(docID)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(EncounterDate, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(EncounterDate, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(patientID, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(EncounterID)
+                                .addComponent(docName, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(patientName)
-                            .addComponent(docID, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(patientID, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(EncounterID, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
-                                    .addComponent(docName))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(111, 111, 111))))
+                        .addComponent(timePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(patientName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -241,7 +271,11 @@ public class EncounterSysRegistration extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(EncounterDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(timePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         updateBtn.setText("Update");
@@ -297,15 +331,15 @@ public class EncounterSysRegistration extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(178, 178, 178)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(createEncounter, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(51, 51, 51)
                                 .addComponent(viewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(51, 51, 51)
+                                .addGap(64, 64, 64)
                                 .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(75, 75, 75)
-                                .addComponent(delBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(49, 49, 49)
+                                .addComponent(delBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -315,13 +349,13 @@ public class EncounterSysRegistration extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(createEncounter, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(viewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(delBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(viewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(delBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -349,6 +383,23 @@ public class EncounterSysRegistration extends javax.swing.JFrame {
     }//GEN-LAST:event_patientLogoutBtnActionPerformed
 
     private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
+        int selectedRowIndex1=encounterSysTable.getSelectedRow();
+        if (selectedRowIndex1<0){
+            JOptionPane.showMessageDialog(this,"Please select a row to View");
+            return;
+        }
+        DefaultTableModel model1 = (DefaultTableModel) encounterSysTable.getModel();
+        Encounter selectedEnc=(Encounter)model1.getValueAt(selectedRowIndex1,0);
+        patientName.setText(selectedEnc.patient.getName());
+        patientID.setText(String.valueOf(selectedEnc.patient.getPatientId()));
+        docID.setText(String.valueOf(selectedEnc.doc.getDocId()));
+        docName.setText(selectedEnc.doc.getName());
+        EncounterID.setText(String.valueOf(selectedEnc.getEncId()));
+        EncounterDate.setDate(selectedEnc.getEncDate());
+        timePicker1.setTime(selectedEnc.getEncTime());
+        EncounterID.setVisible(false);
+        patientID.setEditable(false);
+        docID.setEditable(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_viewBtnActionPerformed
 
@@ -366,6 +417,7 @@ public class EncounterSysRegistration extends javax.swing.JFrame {
 
     private void createEncounterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEncounterActionPerformed
         // TODO add your handling code here:
+        if(validation()){
         Encounter enc = new Encounter();
         randomEncId=(int)(Math.random()*999+100);
         
@@ -377,30 +429,101 @@ public class EncounterSysRegistration extends javax.swing.JFrame {
             
         }
         enc.setEncId(randomEncId);
-        
-        
-//        enc.setEncId((int)(Math.random()*999+100));
         enc.patient.setPatientId(Integer.parseInt(patientID.getText()));
         enc.doc.setDocId(Integer.parseInt(docID.getText()));
-//        SimpleDateFormat encounterDate = new SimpleDateFormat("MMM-dd-yyyy");
-//        String encDate = encounterDate.format(EncounterDate.getDate());
-//        enc.setEncDate(encDate);
+
         enc.setEncDate(EncounterDate.getDate());
         enc.patient.setName(patientName.getText());
         enc.doc.setName(docName.getText());
+        enc.setEncTime(timePicker1.getTime());
         EncounterHistory.encHis.add(enc);
         JOptionPane.showMessageDialog(this, "Encounter Successfully Added");
         encDispTable();
+        }
         
     }//GEN-LAST:event_createEncounterActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         // TODO add your handling code here:
+        if(validation()){
+        int selectedRowIndex1=encounterSysTable.getSelectedRow();
+        DefaultTableModel model1 = (DefaultTableModel) encounterSysTable.getModel();
+        Encounter selectedEnc=(Encounter)model1.getValueAt(selectedRowIndex1,0);
+        selectedEnc.patient.setName(patientName.getText());
+        selectedEnc.doc.setName(docName.getText());
+        selectedEnc.setEncDate(EncounterDate.getDate());
+        selectedEnc.setEncTime(timePicker1.getTime());
+        JOptionPane.showMessageDialog(this, "Encounter Successfully Updated");
+        encDispTable();
+    }
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void delBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delBtnActionPerformed
         // TODO add your handling code here:
+        int selectedRowIndex=encounterSysTable.getSelectedRow();
+        if (selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this,"Please select a row to delete");
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) encounterSysTable.getModel();
+        System.out.print(model.getValueAt(selectedRowIndex,0));
+        Encounter selectedEnc1=(Encounter)model.getValueAt(selectedRowIndex,0);
+        encHis.delEncDetails(selectedEnc1);
+        encDispTable();
     }//GEN-LAST:event_delBtnActionPerformed
+
+    private void patientNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_patientNameKeyTyped
+        // TODO add your handling code here:
+        char typedName = evt.getKeyChar();
+        if(!Character.isAlphabetic(typedName) && !Character.isWhitespace(typedName)){
+            evt.consume();
+        }
+        //Restrict the length to 256
+        if(patientName.getText().length() > 100){
+            evt.consume();
+        }
+    }//GEN-LAST:event_patientNameKeyTyped
+
+    private void patientIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_patientIDKeyTyped
+        // TODO add your handling code here:
+        char typedPatientID = evt.getKeyChar();
+        if(!Character.isDigit(typedPatientID)){
+            evt.consume();
+        }
+        if(patientID.getText().length() > 5){
+            evt.consume();
+        }
+    }//GEN-LAST:event_patientIDKeyTyped
+
+    private void docIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_docIDKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_docIDKeyPressed
+
+    private void docIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_docIDKeyTyped
+        // TODO add your handling code here:
+        char typedPatientID = evt.getKeyChar();
+        if(!Character.isDigit(typedPatientID)){
+            evt.consume();
+        }
+
+ 
+
+        if(docID.getText().length() > 5){
+            evt.consume();
+        }
+    }//GEN-LAST:event_docIDKeyTyped
+
+    private void docNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_docNameKeyTyped
+        // TODO add your handling code here:
+        char typedName = evt.getKeyChar();
+        if(!Character.isAlphabetic(typedName) && !Character.isWhitespace(typedName)){
+            evt.consume();
+        }
+        //Restrict the length to 256
+        if(docName.getText().length() > 100){
+            evt.consume();
+        }
+    }//GEN-LAST:event_docNameKeyTyped
     public void encDispTable(){
         DefaultTableModel model1 = (DefaultTableModel) encounterSysTable.getModel();
         model1.setRowCount(0);
@@ -413,8 +536,46 @@ public class EncounterSysRegistration extends javax.swing.JFrame {
             row[3]=es.patient.getName();
             row[4]=es.doc.getDocId();
             row[5]=es.doc.getName();
+            row[6]=es.getEncTime();
             model1.addRow(row);
         }
+    }
+    boolean validation(){
+        String id,did, name, dname;
+        Date dob,encdb;
+        LocalTime etime;
+        
+               
+        id = patientID.getText();
+        did = patientName.getText();
+        name = patientName.getText();
+        dname= docName.getText();
+        encdb=EncounterDate.getDate();
+        etime=timePicker1.getTime();
+       
+        if (id.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter Patient ID");
+            return false;
+        }
+       
+        if (name.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter Patient name");
+            return false;
+        }
+        if (did.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter Doctor ID");
+            return false;
+        }
+       
+        if (dname.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter Doctor name");
+            return false;
+        }
+        return true;
     }
     /**
      * @param args the command line arguments
@@ -466,6 +627,7 @@ public class EncounterSysRegistration extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
@@ -474,6 +636,7 @@ public class EncounterSysRegistration extends javax.swing.JFrame {
     private javax.swing.JTextField patientID;
     private javax.swing.JButton patientLogoutBtn;
     private javax.swing.JTextField patientName;
+    private com.github.lgooddatepicker.components.TimePicker timePicker1;
     private javax.swing.JButton updateBtn;
     private javax.swing.JButton viewBtn;
     // End of variables declaration//GEN-END:variables

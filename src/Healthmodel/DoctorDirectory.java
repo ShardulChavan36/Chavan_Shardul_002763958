@@ -4,6 +4,7 @@
  */
 package Healthmodel;
 
+
 import java.util.ArrayList;
 
 /**
@@ -15,8 +16,8 @@ public class DoctorDirectory {
 
     public static Doctor doc1(){
         return new Doctor(9,3,"Vipul", 26, 76632621, "vipul@", "male", 20, 02221,"Boylston",  "Boston", "MA","MBBS","Brain Specialist","vip");
-        
-    }
+    }     
+    
     public static ArrayList<Doctor> getDocDir() {
         return docDir;
     }
@@ -24,7 +25,10 @@ public class DoctorDirectory {
     public static void setDocDir(ArrayList<Doctor> docDir) {
         DoctorDirectory.docDir = docDir;
     }
-    
+
+    public void delDocDetails(Doctor d){
+    docDir.remove(d);
+    }
     public boolean checkDID(int dID){
         int flag = 0;
         for(Doctor d: getDocDir()){
@@ -38,6 +42,5 @@ public class DoctorDirectory {
         else
             return false;
     } 
-    
-    
+
 }

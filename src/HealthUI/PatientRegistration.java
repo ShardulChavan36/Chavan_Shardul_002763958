@@ -9,6 +9,7 @@ import Healthmodel.Person;
 import Healthmodel.PersonDirectory;
 import Healthmodel.VitalSigns;
 import Healthmodel.VitalSignsHistory;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,9 +30,7 @@ public class PatientRegistration extends javax.swing.JFrame {
      */
     public PatientRegistration(PatientDirectory patientDir) {
         initComponents();
-//        this.personDir=personDir;
         this.patientDir=patientDir;
-//        this.vitalDir=vitalDir;
         patientDispTable();
      
 
@@ -94,7 +93,6 @@ public class PatientRegistration extends javax.swing.JFrame {
         patientPassword = new javax.swing.JPasswordField();
         jPasswordField1 = new javax.swing.JPasswordField();
         jLabel20 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -174,6 +172,12 @@ public class PatientRegistration extends javax.swing.JFrame {
         jScrollPane2.setViewportView(patientTable);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Personal Details"));
+
+        patientName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                patientNameKeyTyped(evt);
+            }
+        });
 
         jLabel2.setText("Name");
 
@@ -281,6 +285,11 @@ public class PatientRegistration extends javax.swing.JFrame {
                 patientHouseActionPerformed(evt);
             }
         });
+        patientHouse.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                patientHouseKeyTyped(evt);
+            }
+        });
 
         jLabel7.setText("House");
 
@@ -299,6 +308,11 @@ public class PatientRegistration extends javax.swing.JFrame {
         patientZipCode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 patientZipCodeActionPerformed(evt);
+            }
+        });
+        patientZipCode.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                patientZipCodeKeyTyped(evt);
             }
         });
 
@@ -493,8 +507,6 @@ public class PatientRegistration extends javax.swing.JFrame {
 
         jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jPasswordField1, patientEmailID, patientPassword});
 
-        jLabel10.setText("    Upload Image");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -516,9 +528,7 @@ public class PatientRegistration extends javax.swing.JFrame {
                                 .addGap(107, 107, 107)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(47, 47, 47)
                                 .addComponent(patientViewBtn)
@@ -528,7 +538,8 @@ public class PatientRegistration extends javax.swing.JFrame {
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(patientUpdateBtn)
                                         .addGap(60, 60, 60)
-                                        .addComponent(patientDeleteBtn))))))
+                                        .addComponent(patientDeleteBtn)))))
+                        .addGap(91, 91, 91))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(patientHomeBtn1)
                         .addGap(282, 282, 282)
@@ -557,8 +568,7 @@ public class PatientRegistration extends javax.swing.JFrame {
                         .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(186, 186, 186)
+                        .addGap(325, 325, 325)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(patientRegisterBtn)
@@ -601,6 +611,7 @@ public class PatientRegistration extends javax.swing.JFrame {
 
     private void patientRegisterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientRegisterBtnActionPerformed
         // TODO add your handling code here:
+        if(validation()){
         Patient patient=new Patient();
         patient.setName(patientName.getText());
         patient.setPatientId(Integer.parseInt(patientID.getText()));
@@ -628,6 +639,7 @@ public class PatientRegistration extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Person Successfully Added");
         patientDispTable();
         clearPatientForm();
+        }
     }//GEN-LAST:event_patientRegisterBtnActionPerformed
 
     
@@ -719,12 +731,14 @@ public void clearPatientForm(){
 
     private void patientIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_patientIDKeyTyped
         // TODO add your handling code here:
-        char typedContactNumber = evt.getKeyChar();
-        if(!Character.isDigit(typedContactNumber)){
+        char typedPatientID = evt.getKeyChar();
+        if(!Character.isDigit(typedPatientID)){
             evt.consume();
         }
-        //Restrict the length to 10
-        if(patientID.getText().length() < 11 && patientID.getText().length()>9){
+
+ 
+
+        if(patientID.getText().length() > 5){
             evt.consume();
         }
         
@@ -735,6 +749,14 @@ public void clearPatientForm(){
     }//GEN-LAST:event_patientContactActionPerformed
 
     private void patientContactKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_patientContactKeyTyped
+    char typedContactNumber = evt.getKeyChar();
+        if(!Character.isDigit(typedContactNumber)){
+            evt.consume();
+        }
+        //Restrict the length to 10
+        if(patientContact.getText().length() == 10){
+            evt.consume();
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_patientContactKeyTyped
 
@@ -748,6 +770,7 @@ public void clearPatientForm(){
 
     private void patientUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientUpdateBtnActionPerformed
         // TODO add your handling code here:
+        if(validation()){
         int selectedRowIndex1=patientTable.getSelectedRow();
         DefaultTableModel model1 = (DefaultTableModel) patientTable.getModel();
         Patient selectedPatient=(Patient)model1.getValueAt(selectedRowIndex1,0);
@@ -769,7 +792,43 @@ public void clearPatientForm(){
         
         JOptionPane.showMessageDialog(this, "Person Successfully Updated");
         patientDispTable();
+        }    
     }//GEN-LAST:event_patientUpdateBtnActionPerformed
+
+    private void patientHouseKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_patientHouseKeyTyped
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_patientHouseKeyTyped
+
+    private void patientNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_patientNameKeyTyped
+        char typedName = evt.getKeyChar();
+        if(!Character.isAlphabetic(typedName) && !Character.isWhitespace(typedName)){
+            evt.consume();
+        }
+        //Restrict the length to 256
+        if(patientName.getText().length() > 100){
+            evt.consume();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_patientNameKeyTyped
+
+    private void patientZipCodeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_patientZipCodeKeyTyped
+    try{
+            //Allow only digits in Zip field
+            char typedZipCode = evt.getKeyChar();
+            if(!Character.isDigit(typedZipCode)){
+                evt.consume();
+            }
+            //Restrict the length to 5
+            if(patientZipCode.getText().length() > 4){
+                evt.consume();
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_patientZipCodeKeyTyped
 
     
     public void patientDispTable(){
@@ -793,6 +852,154 @@ public void clearPatientForm(){
             
             model1.addRow(row);
         }
+    }
+    boolean validation(){
+        String id, name, emailId, gender, community, city, state, username ;
+        String houseNumber, zipCode, age, bloodGroup, height, weight;
+        String contactDetails;
+        Date dob;
+        //String patternEmail = "^[A-Za-z0-9+_.-]+@(.+)$";
+        String patternEmail = "^[(a-zA-Z-0-9-\\_\\+\\.)]+@[(a-z-A-z)]+\\.[(a-zA-z)]{2,3}$";
+        String bmi = "[(0-9\\.)]{2,}$";
+               
+        id = patientID.getText();
+        name = patientName.getText();
+        emailId = patientEmailID.getText();
+        contactDetails = patientContact.getText();
+//        age = ageTxt.getText();
+        dob = jDateChooser1.getDate();
+        houseNumber = patientHouse.getText();
+        community = patientCommunity.getText();
+        city = patientCity.getText();
+        state = patientState.getText();
+        zipCode = patientZipCode.getText();
+        //bloodGroup = (String) patientBloodGroupTxt.getSelectedItem();
+        weight = patientWeight.getText();
+        height = patientHeight.getText();
+        String password = new String(patientPassword.getPassword());
+        String rePassword = new String(jPasswordField1.getPassword());
+       
+        if (id.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter Patient ID");
+            return false;
+        }
+       
+        if (name.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter name");
+            return false;
+        }
+       
+        if (contactDetails.equals("") || !(patientContact.getText().length()==10))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter valid contact Number");
+            patientContact.setText("");
+           
+            return false;
+        }
+        //emailIDTxt.getText().isBlank() &&
+        if( !patientEmailID.getText().matches(patternEmail)){
+                JOptionPane.showMessageDialog(this, "Please enter a valid Email.");
+                patientEmailID.setText("");
+                return false;
+            }
+       
+//        if (age.equals(""))
+//        {
+//            JOptionPane.showMessageDialog(this, "Please enter age");
+//            return false;
+//        }
+       
+        if (dob.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter Date of BIrth");
+            return false;
+        }
+       
+        if (houseNumber.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter houseNumber");
+            return false;
+        }
+       
+        if (community.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter community");
+            return false;
+        }
+       
+        if (city.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter city");
+            return false;
+        }
+       
+        if (state.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter state");
+            return false;
+        }
+       
+        if (zipCode.equals("") || !(patientZipCode.getText().length()==5))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter zipCode");
+            patientZipCode.setText("");
+            return false;
+        }
+       
+//        if (bloodGroup.equals(""))
+//        {
+//            JOptionPane.showMessageDialog(this, "Please enter bloodGroup");
+//            return false;
+//        }
+       
+//        if (height.equals("") )
+//        {
+//            JOptionPane.showMessageDialog(this, "Please enter height");
+//            return false;
+//        }
+       
+        if( height.equals("") || !patientHeight.getText().matches(bmi)){
+                JOptionPane.showMessageDialog(this, "Please enter a valid height.");
+                patientHeight.setText("");
+                return false;
+            }
+       
+       
+//        if (weight.equals(""))
+//        {
+//            JOptionPane.showMessageDialog(this, "Please enter weight");
+//            return false;
+//        }
+       
+        if( weight.equals("") || !patientWeight.getText().matches(bmi)){
+                JOptionPane.showMessageDialog(this, "Please enter a valid weight.");
+                patientWeight.setText("");
+                return false;
+            }
+      
+   
+       
+        if (password.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter password");
+            return false;
+        }
+       
+        if (rePassword.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter rePassword");
+            return false;
+        }
+       
+        if (!(password).equals(rePassword)){
+            JOptionPane.showMessageDialog(this, "Password doesn't match");
+            return false;
+        }
+       
+        return true;
+       
     }
     /**
      * @param args the command line arguments
@@ -833,7 +1040,6 @@ public void clearPatientForm(){
     private javax.swing.JComboBox<String> genderCombo;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel17;

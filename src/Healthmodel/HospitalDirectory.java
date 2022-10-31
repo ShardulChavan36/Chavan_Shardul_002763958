@@ -4,6 +4,7 @@
  */
 package Healthmodel;
 
+
 import java.util.ArrayList;
 
 /**
@@ -19,6 +20,9 @@ public class HospitalDirectory {
 
     public static void setHospDir(ArrayList<Hospital> hospDir) {
         HospitalDirectory.hospDir = hospDir;
+    }
+     public void delHospDetails(Hospital h){
+    hospDir.remove(h);
     }
     
 }

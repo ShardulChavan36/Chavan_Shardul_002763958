@@ -37,10 +37,11 @@ public class EncounterRegistration extends javax.swing.JPanel {
     public String username;
     String community;
     int docID;
+    int rowIndex;
     private TableRowSorter searcher;
-    public EncounterRegistration(EncounterHistory encHis,int docID,String username) {
+    public EncounterRegistration(EncounterHistory encHis,int docID,String username,int rowIndex) {
         initComponents();
-        
+        this.rowIndex=rowIndex;
          if(encHis == null){
             this.encHis = new EncounterHistory();
         }
@@ -54,7 +55,8 @@ public class EncounterRegistration extends javax.swing.JPanel {
             }
         }
         encDispTable(docID);
-        viewPatientDetails(username);
+        viewEncounterDetails(username);
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,7 +70,6 @@ public class EncounterRegistration extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         patientLogoutBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        CreateEncounter = new javax.swing.JButton();
         ViewBtn = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -134,14 +135,6 @@ public class EncounterRegistration extends javax.swing.JPanel {
                     .addComponent(jLabel1))
                 .addGap(16, 16, 16))
         );
-
-        CreateEncounter.setText("Create");
-        CreateEncounter.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        CreateEncounter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CreateEncounterActionPerformed(evt);
-            }
-        });
 
         ViewBtn.setText("View");
         ViewBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -395,9 +388,7 @@ public class EncounterRegistration extends javax.swing.JPanel {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(178, 178, 178)
-                .addComponent(CreateEncounter, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addGap(310, 310, 310)
                 .addComponent(ViewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62)
                 .addComponent(UpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -414,7 +405,6 @@ public class EncounterRegistration extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(CreateEncounter, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(ViewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(UpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(DelBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -485,45 +475,6 @@ public class EncounterRegistration extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_patientIDActionPerformed
 
-    private void CreateEncounterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateEncounterActionPerformed
-        // TODO add your handling code here:
-        Encounter enc = new Encounter();
-        boolean b1 = patientDir.checkPID(Integer.parseInt(patientID.getText()));
-        boolean b2 = docDir.checkDID(Integer.parseInt(doctorID.getText()));
-        if(b1 && b2){
-            int randomEncId=(int)(Math.random()*999+100);
-
-            for(Encounter e:EncounterHistory.getEncHis()){
-                if(randomEncId==e.getEncId()){
-
-                   randomEncId =(int)(Math.random()*999+100);
-                }
-
-            }
-            enc.setEncId(randomEncId);
-            enc.patient.setPatientId(Integer.parseInt(patientID.getText()));
-            enc.doc.setDocId(Integer.parseInt(doctorID.getText()));
-    //        SimpleDateFormat encounterDate = new SimpleDateFormat("MMM-dd-yyyy");
-            enc.setEncDate(DateChooser.getDate());
-            enc.setEncTime(timePicker.getTime());
-            enc.patient.setName(PatientName.getText());
-            enc.doc.setName(doctorName.getText());
-            enc.setSugarLevel(Float.parseFloat(patientSugarLevel.getText()));
-            enc.setBloodPressure(Float.parseFloat(vitalsBP.getText()));
-            enc.setBodyTemperature(Float.parseFloat(vitalsTemp.getText()));
-            enc.setSymptoms(vitalSymptoms.getText());
-            enc.setEncDiagnosis(EncDiagnosis.getText());
-        
-            EncounterHistory.encHis.add(enc);
-            JOptionPane.showMessageDialog(this, "Encounter Successfully Added");
-            encDispTable(docID);
-            System.out.println("Displaying Table create function");
-        }
-        else
-        JOptionPane.showMessageDialog(this, "Entered ID doesn't exist.");
-        
-    }//GEN-LAST:event_CreateEncounterActionPerformed
-
     private void doctorNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_doctorNameActionPerformed
@@ -582,7 +533,7 @@ public class EncounterRegistration extends javax.swing.JPanel {
             }
         }
     }
-    public void viewPatientDetails(String username){
+    public void viewEncounterDetails(String username){
 
         Encounter enc = new Encounter();
         int docFound = 0;
@@ -614,9 +565,10 @@ public class EncounterRegistration extends javax.swing.JPanel {
        
         
     }
+    
+    
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CreateEncounter;
     private com.toedter.calendar.JDateChooser DateChooser;
     private javax.swing.JButton DelBtn;
     private javax.swing.JTextField EncDiagnosis;
